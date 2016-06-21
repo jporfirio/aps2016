@@ -1,12 +1,12 @@
 package src.seega.main;
 
-import src.seega.view.InterfaceSeega;
+import src.seega.view.Interface;
 
 
 public class Main {
 
     public static void main(String[] args) {
-      InterfaceSeega interfaceSeega = new InterfaceSeega();
+      Interface interfaceSeega = new Interface();
       interfaceSeega.setVisible(true);
         
     }   
