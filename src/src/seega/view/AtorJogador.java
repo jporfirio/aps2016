@@ -15,9 +15,9 @@ public class AtorJogador {
     protected String idUsuario;
     protected AtorNetGames rede;
     protected Tabuleiro tabuleiro;
-    protected InterfaceInicial janela;
+    protected InterfaceSeega janela;
 
-    public AtorJogador(InterfaceInicial janela) {
+    public AtorJogador(InterfaceSeega janela) {
         super();
         rede = new AtorNetGames(this);
         this.janela = janela;
@@ -41,7 +41,7 @@ public class AtorJogador {
         }
     }
 
-    public InterfaceInicial informarJanela() {
+    public InterfaceSeega informarJanela() {
         return janela;
     }
 

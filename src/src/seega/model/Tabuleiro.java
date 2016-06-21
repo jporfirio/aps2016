@@ -4,7 +4,7 @@ public class Tabuleiro {
 
 	protected JogadorLocal jogadorLocal;
 	protected Jogador jogadorRemoto;
-	protected Posicao[][] posicoes;
+	protected Posicao[][] posicoes = new Posicao[5][5];
 	protected boolean faseInicial;
 	protected boolean partidaEmAndamento;
 	protected boolean vezDoJogadorLocal;
