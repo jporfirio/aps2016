@@ -30,6 +30,7 @@ public class AtorJogador {
         if (!conectado) {
             String servidor = this.obterDadosConexao();
             boolean exito = rede.conectar(servidor, idUsuario);
+            
             if (exito) {
                 tabuleiro.estabelecerConectado(true);
                 return 0;
