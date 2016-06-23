@@ -119,7 +119,6 @@ public class Tabuleiro {
         if (jogadorLocal == null) {
             jogadorLocal = new JogadorLocal();
             jogadorLocal.setNome(idJogador);
-            jogadorLocal.
             vezDoJogadorLocal = true;
             
         } else {
