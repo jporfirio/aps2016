@@ -29,13 +29,16 @@ public class AtorNetGames implements OuvidorProxy {
 		try {
 			proxy.conectar(servidor, nome);
 			return true;
-		} catch (JahConectadoException e) {
+		} catch (JahConectadoException e) {            
+                        JOptionPane.showMessageDialog(atorJogador.informarJanela(), e.getMessage());
 			e.printStackTrace();
 			return false;
-		} catch (NaoPossivelConectarException e) {
+		} catch (NaoPossivelConectarException e) {                        
+                        JOptionPane.showMessageDialog(atorJogador.informarJanela(), e.getMessage());
 			e.printStackTrace();
 			return false;
 		} catch (ArquivoMultiplayerException e) {
+                        JOptionPane.showMessageDialog(atorJogador.informarJanela(), e.getMessage());
 			e.printStackTrace();
 			return false;
 		}
@@ -46,6 +49,7 @@ public class AtorNetGames implements OuvidorProxy {
 			proxy.desconectar();
 			return true;
 		} catch (NaoConectadoException e) {
+                        JOptionPane.showMessageDialog(atorJogador.informarJanela(), e.getMessage());
 			e.printStackTrace();
 			return false;
 		}
@@ -55,6 +59,7 @@ public class AtorNetGames implements OuvidorProxy {
 		try {
 			proxy.iniciarPartida(new Integer(2));
 		} catch (NaoConectadoException e) {
+                        JOptionPane.showMessageDialog(atorJogador.informarJanela(), e.getMessage());
 			e.printStackTrace();
 		}
 	}
@@ -63,6 +68,7 @@ public class AtorNetGames implements OuvidorProxy {
 		try {
 			proxy.enviaJogada(lance);
 		} catch (NaoJogandoException e) {
+                        JOptionPane.showMessageDialog(atorJogador.informarJanela(), e.getMessage());
 			e.printStackTrace();
 		}
 	}

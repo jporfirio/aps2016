@@ -102,8 +102,7 @@ public class AtorJogador {
 //            if ((resultado == 10) || (resultado == 9)) {
 //                this.enviarJogada(linha, coluna);
 //            }
-        }
-        else {
+        } else {
             resultado = 11;
         }
         return resultado;

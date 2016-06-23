@@ -119,12 +119,14 @@ public class Tabuleiro {
         if (jogadorLocal == null) {
             jogadorLocal = new JogadorLocal();
             jogadorLocal.setNome(idJogador);
+            vezDoJogadorLocal = true;
         } else {
             jogadorRemoto = new Jogador();
             jogadorRemoto.setNome(idJogador);
         }
     }
         
+    //inicializa as posições na instanciação do Tabuleiro
     public void inicializarPosicoes() {
         for (int linha = 1; linha <= 5; linha++) {
             for (int coluna = 1; coluna <= 5; coluna++) {
@@ -135,6 +137,7 @@ public class Tabuleiro {
         posicoes[3][3].setCentral(true);
     }
     
+    //esvazia as posições a cada novo jogo
      public void esvaziarPosicoes() {
         for (int linha = 1; linha <= 5; linha++) {
             for (int coluna = 1; coluna <=5; coluna++) {
