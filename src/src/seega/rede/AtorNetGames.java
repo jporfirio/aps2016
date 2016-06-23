@@ -8,7 +8,6 @@ import br.ufsc.inf.leobr.cliente.exception.JahConectadoException;
 import br.ufsc.inf.leobr.cliente.exception.NaoConectadoException;
 import br.ufsc.inf.leobr.cliente.exception.NaoJogandoException;
 import br.ufsc.inf.leobr.cliente.exception.NaoPossivelConectarException;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import src.seega.model.Lance;
 import src.seega.view.AtorJogador;

@@ -1,5 +1,6 @@
 package src.seega.view;
 
+import javax.swing.JOptionPane;
 import src.seega.model.Jogador;
 import src.seega.model.JogadorLocal;
 import src.seega.model.Lance;
@@ -87,13 +88,28 @@ public class AtorJogador {
         int resultado = 0;
         boolean emAndamento = tabuleiro.informarEmAndamento();
         boolean faseInicial = tabuleiro.informarFaseInicial();
+        JogadorLocal jogadorLocal = tabuleiro.getJogadorLocal();
+        Jogador jogadorRemoto = tabuleiro.getJogadorRemoto();
         boolean primeiraEscolha;
-        if (tabuleiro.isVezDoJogadorLocal()){
-            JogadorLocal jogadorLocal = tabuleiro.getJogadorLocal();
-            primeiraEscolha = jogadorLocal.informaPrimeiraEscolha();            
+        
+        //colocar pedra
+        if (emAndamento && faseInicial) {
+            if (tabuleiro.isVezDoJogadorLocal()){
+                primeiraEscolha = jogadorLocal.informaPrimeiraEscolha();            
+            
+                if (primeiraEscolha) {
+                    
+                }
+            
+            } else {
+                
+            } 
+            
+        } else if (emAndamento && !faseInicial) {
         } else {
-            Jogador jogadorRemoto = tabuleiro.getJogadorRemoto();
+            JOptionPane.showMessageDialog(null, "Jogo não está em andamento");
         }
+        
         if (emAndamento) {
             
             //CRIAR CLICK NA CLASSE TABULEIRO RETORNANDO RESULTADO DA JOGADA
