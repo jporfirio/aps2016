@@ -1,5 +1,7 @@
 package src.seega.model;
 
+import javax.swing.JOptionPane;
+
 public class Tabuleiro {
 
 	protected JogadorLocal jogadorLocal;
@@ -41,13 +43,12 @@ public class Tabuleiro {
 
         //M3 e M4 - Notificação de derrota / vitória
 	public void enviaMensagemDerrota() {
-		// TODO - implement Tabuleiro.enviaMensagemDerrota
-		throw new UnsupportedOperationException();
+		JOptionPane.showMessageDialog(null, "Que pena! Você perdeu! :[");
+
 	}
 
 	public void enviaMensagemVitoria() {
-		// TODO - implement Tabuleiro.enviaMensagemVitoria
-		throw new UnsupportedOperationException();
+		JOptionPane.showMessageDialog(null, "Parabéns! Você venceu! :D");
 	}
 
 	//M5 - Remover Pedra do Tabuleiro
@@ -62,6 +63,7 @@ public class Tabuleiro {
 		throw new UnsupportedOperationException();
 	}
 
+        //ESSE MÉTODO TEM A VER COM O CLICK NO TABULEIRO
 	//M7 - Colocar 2 pedras no tabuleiro por jogador
 	public void colocarPedra(int posicaoX, int posicaoY) {
 		// TODO - implement Tabuleiro.colocarPedra
@@ -119,7 +121,6 @@ public class Tabuleiro {
         if (jogadorLocal == null) {
             jogadorLocal = new JogadorLocal();
             jogadorLocal.setNome(idJogador);
-            vezDoJogadorLocal = true;
             
         } else {
             jogadorRemoto = new Jogador();
@@ -164,7 +165,7 @@ public class Tabuleiro {
                 }
             }
         } else {
-            
+            mensagem = "Partida não está em andamento!";
             if (haGanhador) {
              //TEMOS QUE DEFINIR ESSE HA GANHADOR PARA UM JOGADOR E NAO PARA O TABULEIRO
             }
@@ -192,7 +193,6 @@ public class Tabuleiro {
        return null;
    }
 
-   //CRIAR MÉTODO DE CLICK NO TABULEIRO!
    
     public JogadorLocal getJogadorLocal() {
         return jogadorLocal;
@@ -200,14 +200,6 @@ public class Tabuleiro {
 
     public Jogador getJogadorRemoto() {
         return jogadorRemoto;
-    }
-
-    public boolean isFaseInicial() {
-        return faseInicial;
-    }
-
-    public boolean isPartidaEmAndamento() {
-        return partidaEmAndamento;
     }
 
     public boolean isVezDoJogadorLocal() {
@@ -218,10 +210,17 @@ public class Tabuleiro {
         return haGanhador;
     }
 
-    public boolean isConectado() {
-        return conectado;
+    public void estabelecerEmAndamento(boolean valor) {
+            this.partidaEmAndamento = valor;
     }
-   
+    
+    public void setarDaVez(int posicao) {
+        if (posicao == 1) {
+            vezDoJogadorLocal = true;
+        } else {
+            vezDoJogadorLocal = false;
+        }
+    }
    
 
 }

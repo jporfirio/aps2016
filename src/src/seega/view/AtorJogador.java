@@ -88,9 +88,13 @@ public class AtorJogador {
         int resultado = 0;
         boolean emAndamento = tabuleiro.informarEmAndamento();
         boolean faseInicial = tabuleiro.informarFaseInicial();
+        boolean haGanhador = tabuleiro.isHaGanhador();
+        boolean ocupada = tabuleiro.getPosicao(linha, coluna).isOcupada();
+        boolean central = tabuleiro.getPosicao(linha, coluna).isCentral();
         JogadorLocal jogadorLocal = tabuleiro.getJogadorLocal();
         Jogador jogadorRemoto = tabuleiro.getJogadorRemoto();
         boolean primeiraEscolha;
+        
         
         //colocar pedra
         if (emAndamento && faseInicial) {
@@ -132,11 +136,17 @@ public class AtorJogador {
     }
 
 
+    //indica que a partida foi aceita
     public void tratarIniciarPartida(int posicao) {
         tabuleiro.esvaziarPosicoes();
         tabuleiro.criarJogador(idUsuario);
         String idJogador = rede.informarNomeAdversario(idUsuario);
         tabuleiro.criarJogador(idJogador);
+        tabuleiro.estabelecerEmAndamento(true);
+        
+        tabuleiro.setarDaVez(posicao);
+        tabuleiro.informarEstado();
+
     }
 
     public void receberJogada(Lance jogada) {

@@ -572,7 +572,7 @@ public void conectar() {
     }
 
 //    public void inicioDeJogo() {
-//       Icon posicaoVazia = new ImageIcon("/resources/images/semPedra.jpg");
+//       Icon posicaoVazia = new ImageIcon("/resources/images/semPedra.png");
 //        for (int linha = 1; linha <= 5; linha++) {
 //            for (int coluna = 1; coluna <= 5; coluna++) {        
 //                        mapaVPosicao[(linha - 1)][(coluna - 1)].setIcon(posicaoVazia);
@@ -599,18 +599,18 @@ public void conectar() {
     }
     
     public void atualizarWidgets(Tabuleiro tabuleiro) {
-       Icon possuiPedraLocal = new ImageIcon("/resources/images/preto.jpg");
-       Icon possuiPedraRemoto = new ImageIcon("/resources/images/vermelho.jpg");
-       Icon posicaoVazia = new ImageIcon("/resources/images/iconVazio.jpg");
+       Icon pedraLocal = new ImageIcon("/resources/images/pedraLocal.png");
+       Icon pedraRemoto = new ImageIcon("/resources/images/pedraRemoto.png");
+       Icon semPedra = new ImageIcon("/resources/images/semPedra.png");
         for (int linha = 1; linha <= 5; linha++) {
             for (int coluna = 1; coluna <= 5; coluna++) {
                 Posicao posicao = tabuleiro.getPosicao(linha, coluna);     
                     if (posicao.informarJogadorOcupante() == null) { 
-                        mapaVPosicao[(linha - 1)][(coluna - 1)].setIcon(posicaoVazia);
+                        mapaVPosicao[(linha - 1)][(coluna - 1)].setIcon(semPedra);
                     } else if (posicao.informarJogadorOcupante() instanceof JogadorLocal) {
-                        mapaVPosicao[(linha - 1)][(coluna - 1)].setIcon(possuiPedraLocal);
+                        mapaVPosicao[(linha - 1)][(coluna - 1)].setIcon(pedraLocal);
                     } else {
-                        mapaVPosicao[(linha - 1)][(coluna - 1)].setIcon(possuiPedraRemoto);               
+                        mapaVPosicao[(linha - 1)][(coluna - 1)].setIcon(pedraRemoto);               
                     }
             };
         };
@@ -641,30 +641,14 @@ public void conectar() {
                 break;
             case 7:
                 JOptionPane.showMessageDialog(this, "Tentativa de inicio sem conexão previamente estabelecida");
-                break;
-            case 8:
-                JOptionPane.showMessageDialog(this, "Não é a sua vez");
-                break;
-            case 9:
-                JOptionPane.showMessageDialog(this, "Partida encerrada");
-                break;
-            case 10:
-                JOptionPane.showMessageDialog(this, "Lance OK");
-                break;
+                break;    
             case 11:
                 JOptionPane.showMessageDialog(this, "Operação inválida! Não existe uma partida em andamento!");
                 break;
             case 13:
                 JOptionPane.showMessageDialog(this, "Partida corrente não interrompida");
                 break;
-            case 14:
-                JOptionPane.showMessageDialog(this, "Posição não pode ser alocada, posição já ocupada ou desativada!");
-                break;
-            case 15:
-                JOptionPane.showMessageDialog(this, "Desativação não permitida, posição já desativada, ocupada ou posição inicial!");
-                break;
-            
-            
+      
         };
     }
 

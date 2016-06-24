@@ -95,5 +95,37 @@ public class Posicao {
         public int getColuna() {
             return coluna;
         }
+        
+        public Jogador getJogadorOcupante() {
+            return jogadorOcupante;
+        }
+
+        public boolean isOcupada() {
+            return ocupada;
+        }
+
+        public boolean isPodeMover() {
+            return podeMover;
+        }
+
+        public Posicao getPosicaoAcima() {
+            return posicaoAcima;
+        }
+
+        public Posicao getPosicaoAbaixo() {
+            return posicaoAbaixo;
+        }
+
+        public Posicao getPosicaoEsquerda() {
+            return posicaoEsquerda;
+        }
+
+        public Posicao getPosicaoDireita() {
+            return posicaoDireita;
+        }
+
+        public boolean isCentral() {
+            return central;
+        }
  
 }
