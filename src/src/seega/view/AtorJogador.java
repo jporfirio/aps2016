@@ -106,6 +106,8 @@ public class AtorJogador {
                     
                     primeiraEscolha = jogadorLocal.informaPrimeiraEscolha();
                     
+                    enviarLance(linha, coluna, false, primeiraEscolha);
+                    
                     if (primeiraEscolha) {
                         
                         jogadorLocal.definePrimeiraEscolhaFalso();
