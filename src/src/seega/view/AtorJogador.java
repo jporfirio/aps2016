@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 import src.seega.model.Jogador;
 import src.seega.model.JogadorLocal;
 import src.seega.model.Lance;
+import src.seega.model.Posicao;
 import src.seega.model.Tabuleiro;
 import src.seega.rede.AtorNetGames;
 
@@ -89,8 +90,9 @@ public class AtorJogador {
         boolean emAndamento = tabuleiro.informarEmAndamento();
         boolean faseInicial = tabuleiro.informarFaseInicial();
         boolean haGanhador = tabuleiro.isHaGanhador();
-        boolean ocupada = tabuleiro.getPosicao(linha, coluna).isOcupada();
-        boolean central = tabuleiro.getPosicao(linha, coluna).isCentral();
+        Posicao posicao = tabuleiro.informarPosicao(linha, coluna);
+        boolean ocupada = tabuleiro.informarPosicao(linha, coluna).isOcupada();
+        boolean central = tabuleiro.informarPosicao(linha, coluna).isCentral();
         JogadorLocal jogadorLocal = tabuleiro.getJogadorLocal();
         Jogador jogadorRemoto = tabuleiro.getJogadorRemoto();
         boolean primeiraEscolha;
@@ -99,40 +101,48 @@ public class AtorJogador {
         //colocar pedra
         if (emAndamento && faseInicial) {
             if (tabuleiro.isVezDoJogadorLocal()){
-                primeiraEscolha = jogadorLocal.informaPrimeiraEscolha();            
-            
-                if (primeiraEscolha) {
+                if (!central && !ocupada) {
+                    posicao.defineJogador(jogadorLocal);
                     
+                    primeiraEscolha = jogadorLocal.informaPrimeiraEscolha();
+                    
+                    if (primeiraEscolha) {
+                        
+                        jogadorLocal.definePrimeiraEscolhaFalso();
+                        tabuleiro.informarEstado();
+                    } else {
+                        jogadorLocal.definePrimeiraEscolhaVerdadeiro();
+                        int jogLocal = jogadorLocal.informarNumPecas();
+                        int jogRemoto = jogadorRemoto.informarNumPecas();
+                        
+                        if (jogLocal==12 && jogRemoto ==12) {
+                            tabuleiro.mudarFase();
+                        } else {
+                            tabuleiro.passarVez();
+                        }
+                    }
                 }
             
             } else {
                 
             } 
-            
+         
+        //aqui ele só pode mover ou a pedra ser removida
         } else if (emAndamento && !faseInicial) {
+        
         } else {
             JOptionPane.showMessageDialog(null, "Jogo não está em andamento");
-        }
-        
-        if (emAndamento) {
-            
-            //CRIAR CLICK NA CLASSE TABULEIRO RETORNANDO RESULTADO DA JOGADA
-            
-//            resultado = tabuleiro.click(linha, coluna);
-//            if ((resultado == 10) || (resultado == 9)) {
-//                this.enviarJogada(linha, coluna);
-//            }
-        } else {
             resultado = 11;
         }
+
         return resultado;
     }
 
-    public void enviarLance(int linha, int coluna) {
+    public void enviarLance(int linha, int coluna, boolean isRetirada, boolean isPrimeiraColocacao) {
         //ENVIAR LANCE AO NETGAMES
         
-     //   Lance jogada = tabuleiro.informarJogada(linha, coluna);
-     //   rede.enviarJogada(jogada);
+        Lance jogada = new Lance(linha, coluna, isRetirada, isPrimeiraColocacao);
+        rede.enviarJogada(jogada);
     }
 
 
@@ -144,6 +154,7 @@ public class AtorJogador {
         tabuleiro.criarJogador(idJogador);
         tabuleiro.estabelecerEmAndamento(true);
         
+        //aqui ele seta o jogador local como da vez
         tabuleiro.setarDaVez(posicao);
         tabuleiro.informarEstado();
 

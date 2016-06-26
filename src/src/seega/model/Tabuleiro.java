@@ -144,14 +144,17 @@ public class Tabuleiro {
         for (int linha = 1; linha <= 5; linha++) {
             for (int coluna = 1; coluna <=5; coluna++) {
                 posicoes[(linha - 1)][(coluna - 1)].esvaziar();
+                
             }
         }
+        
+        posicoes[2][2].setCentral(true);
         jogadorLocal = null;
         jogadorRemoto = null;
         partidaEmAndamento = false;
     }
 
-    
+    //talvez não precise desse método
     public String informarEstado() {
         String mensagem = null;
     
@@ -178,11 +181,11 @@ public class Tabuleiro {
 
     //GETTERS
 
-   public Posicao[][] getPosicoes() {
+   public Posicao[][] informarPosicoes() {
         return posicoes;
     }
    
-   public Posicao getPosicao(int linha, int coluna) {
+   public Posicao informarPosicao(int linha, int coluna) {
        for (Posicao[] posicaoArray : posicoes) {
            for (Posicao posicao : posicaoArray) {
                 if (posicao.getLinha() == linha && posicao.getColuna() == coluna) {

@@ -591,7 +591,17 @@ public void conectar() {
                 JOptionPane.showMessageDialog(null, "Posição já ocupada!");
                 break;
             case 3:
+                JOptionPane.showMessageDialog(null, "Posição central não pode ser ocupada nesta etapa!");
+                break;    
+            case 4:
+                JOptionPane.showMessageDialog(null, "Pedra selecionada. Selecione a posição desejada para movê-la!");
                 break;
+            case 5:
+                JOptionPane.showMessageDialog(null, "Pedra movida com sucesso");
+                break;
+            case 6:
+                JOptionPane.showMessageDialog(null, "Jogo acabou!");
+                break;    
             default:
                 this.notificarResultado(resultado);
                 break;
@@ -604,7 +614,7 @@ public void conectar() {
        Icon semPedra = new ImageIcon("/resources/images/semPedra.png");
         for (int linha = 1; linha <= 5; linha++) {
             for (int coluna = 1; coluna <= 5; coluna++) {
-                Posicao posicao = tabuleiro.getPosicao(linha, coluna);     
+                Posicao posicao = tabuleiro.informarPosicao(linha, coluna);     
                     if (posicao.informarJogadorOcupante() == null) { 
                         mapaVPosicao[(linha - 1)][(coluna - 1)].setIcon(semPedra);
                     } else if (posicao.informarJogadorOcupante() instanceof JogadorLocal) {
