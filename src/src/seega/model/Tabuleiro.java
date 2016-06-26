@@ -83,14 +83,12 @@ public class Tabuleiro {
        
         //M13 - Escolher posição da pedra a ser movida e posição desejada para mover
 	public void escolherPosicao() {
-		// TODO - implement Tabuleiro.escolherPosicao
 		throw new UnsupportedOperationException();
 	}
 
         //M14 - Mudar fase do jogo
 	public void mudarFase() {
-		// TODO - implement Tabuleiro.mudarFase
-		throw new UnsupportedOperationException();
+		faseInicial = false;
 	}
 
         //M15 - Receber movimento do jogador Remoto, atualizando tabuleiro local
@@ -111,6 +109,7 @@ public class Tabuleiro {
 	}
 
         //M18 - Receber solicitação de inicio após o Jogador Remoto iniciar o jogo
+        //Esse é o método TratarIniciarPartida do AtorJogador
 	public void receberSolicitacaoInicio() {
 		// TODO - implement Tabuleiro.receberSolicitacaoInicio
 		throw new UnsupportedOperationException();
@@ -136,7 +135,7 @@ public class Tabuleiro {
                
             }
         }
-        posicoes[3][3].setCentral(true);
+        posicoes[2][2].setCentral(true);
     }
     
     //esvazia as posições a cada novo jogo
@@ -154,29 +153,62 @@ public class Tabuleiro {
         partidaEmAndamento = false;
     }
 
-    //talvez não precise desse método
     public String informarEstado() {
         String mensagem = null;
-    
-        // MENSAGEM A SER EXIBIDA NA TELA
         if (this.informarEmAndamento()) {
             if (vezDoJogadorLocal) {
                 if(jogadorLocal.primeiraEscolha) {
-                    mensagem = ("Vez do jogador " + jogadorLocal.getNome() + " colocar a primeira pedra no tabuleiro.");
+                    mensagem = "Vez do jogador " + jogadorLocal.getNome() + " colocar a primeira pedra no tabuleiro.";
                 } else {
-                    mensagem = ("Vez do jogador " + jogadorLocal.getNome() + " colocar a segunda pedra no tabuleiro.");
+                    mensagem = "Vez do jogador " + jogadorLocal.getNome() + " colocar a segunda pedra no tabuleiro.";
                 }
+            } else {
+                mensagem = "Vez do jogador remoto!";
             }
         } else {
             mensagem = "Partida não está em andamento!";
             if (haGanhador) {
-             //TEMOS QUE DEFINIR ESSE HA GANHADOR PARA UM JOGADOR E NAO PARA O TABULEIRO
+            if (jogadorRemoto.informarNumPecas() == 0) {
+                mensagem = "Jogador "+jogadorLocal.getNome()+" foi o vencedor. Parabéns!";
+            } else {
+                mensagem = "Jogador "+jogadorRemoto.getNome()+" foi o vencedor. Parabéns!";
+            }
             }
         }
 
         
         return mensagem;
      
+    }
+    
+    public void receberJogada(Lance jogada) {
+        int linha = jogada.informarLinha();
+        int coluna = jogada.informarColuna();
+        boolean isPrimeiraColocacao = jogada.isPrimeiraColocacao();
+        boolean isMover = jogada.isMover();
+        boolean isRetirada = jogada.isRetirada();
+        
+        //primeira fase
+        if (!isMover && !isRetirada) {
+            
+            if (isPrimeiraColocacao) {
+                
+            } else {
+                passarVez();
+            }
+            
+        //segunda fase
+        } else {
+            if (isMover) {
+                
+            }
+            
+            if (isRetirada) {
+                
+            }
+            
+        }
+        
     }
 
     //GETTERS

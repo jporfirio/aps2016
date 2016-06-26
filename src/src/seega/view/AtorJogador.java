@@ -106,7 +106,7 @@ public class AtorJogador {
                     
                     primeiraEscolha = jogadorLocal.informaPrimeiraEscolha();
                     
-                    enviarLance(linha, coluna, false, primeiraEscolha);
+                    enviarLance(linha, coluna, false, primeiraEscolha, false);
                     
                     if (primeiraEscolha) {
                         
@@ -125,13 +125,19 @@ public class AtorJogador {
                     }
                 }
             
+                
             } else {
                 
+                //aqui a vez é do jogador Remoto
+                tabuleiro.informarEstado();
             } 
          
-        //aqui ele só pode mover ou a pedra ser removida
+        //segunda fase
         } else if (emAndamento && !faseInicial) {
-        
+            
+            if (jogadorLocal.informarNumPecas() == 0 || jogadorRemoto.informarNumPecas() == 0) {
+                haGanhador = true;
+            } 
         } else {
             JOptionPane.showMessageDialog(null, "Jogo não está em andamento");
             resultado = 11;
@@ -140,10 +146,8 @@ public class AtorJogador {
         return resultado;
     }
 
-    public void enviarLance(int linha, int coluna, boolean isRetirada, boolean isPrimeiraColocacao) {
-        //ENVIAR LANCE AO NETGAMES
-        
-        Lance jogada = new Lance(linha, coluna, isRetirada, isPrimeiraColocacao);
+    public void enviarLance(int linha, int coluna, boolean isRetirada, boolean isPrimeiraColocacao, boolean isMover) { 
+        Lance jogada = new Lance(linha, coluna, isRetirada, isPrimeiraColocacao, isMover);
         rede.enviarJogada(jogada);
     }
 
@@ -163,6 +167,6 @@ public class AtorJogador {
     }
 
     public void receberJogada(Lance jogada) {
-//      tabuleiro.receberJogada(jogada);
+        tabuleiro.receberJogada(jogada);
     }
 }

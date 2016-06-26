@@ -16,12 +16,14 @@ public class Lance implements Jogada {
     protected int coluna;
     protected boolean isRetirada;
     protected boolean isPrimeiraColocacao;
+    protected boolean isMover;
 
-    public Lance(int linha, int coluna, boolean retirada, boolean primeiraColocacao) {
+    public Lance(int linha, int coluna, boolean retirada, boolean primeiraColocacao, boolean isMover) {
         this.linha = linha;
         this.coluna = coluna;
-        this.isRetirada = isRetirada;
-        this.isPrimeiraColocacao = isPrimeiraColocacao;    
+        this.isRetirada = retirada;
+        this.isPrimeiraColocacao = primeiraColocacao; 
+        this.isMover = isMover;
     }
     
     public int informarLinha() {
@@ -40,20 +42,8 @@ public class Lance implements Jogada {
         return this.isPrimeiraColocacao;
     }
 
-    public int getLinha() {
-        return linha;
-    }
-
-    public int getColuna() {
-        return coluna;
-    }
-
-    public boolean isIsRetirada() {
-        return isRetirada;
-    }
-
-    public boolean isIsPrimeiraColocacao() {
-        return isPrimeiraColocacao;
+    public boolean isMover() {
+        return this.isMover;
     }
     
     
