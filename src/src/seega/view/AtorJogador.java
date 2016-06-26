@@ -91,8 +91,8 @@ public class AtorJogador {
         boolean faseInicial = tabuleiro.informarFaseInicial();
         boolean haGanhador = tabuleiro.isHaGanhador();
         Posicao posicao = tabuleiro.informarPosicao(linha, coluna);
-        boolean ocupada = tabuleiro.informarPosicao(linha, coluna).isOcupada();
-        boolean central = tabuleiro.informarPosicao(linha, coluna).isCentral();
+        boolean ocupada = tabuleiro.informarPosicao(linha, coluna).informaOcupada();
+        boolean central = tabuleiro.informarPosicao(linha, coluna).informaCentral();
         JogadorLocal jogadorLocal = tabuleiro.getJogadorLocal();
         Jogador jogadorRemoto = tabuleiro.getJogadorRemoto();
         boolean primeiraEscolha;
@@ -100,9 +100,10 @@ public class AtorJogador {
         
         //colocar pedra
         if (emAndamento && faseInicial) {
-            if (tabuleiro.isVezDoJogadorLocal()){
+            
                 if (!central && !ocupada) {
                     posicao.defineJogador(jogadorLocal);
+                    posicao.setOcupada(true);
                     
                     primeiraEscolha = jogadorLocal.informaPrimeiraEscolha();
                     
@@ -121,16 +122,14 @@ public class AtorJogador {
                             tabuleiro.mudarFase();
                         } else {
                             tabuleiro.passarVez();
+                            
                         }
+                    tabuleiro.informarEstado();
                     }
                 }
             
                 
-            } else {
-                
-                //aqui a vez é do jogador Remoto
-                tabuleiro.informarEstado();
-            } 
+            
          
         //segunda fase
         } else if (emAndamento && !faseInicial) {

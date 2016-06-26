@@ -81,6 +81,7 @@ public class Tabuleiro {
 
         //M9, M10, M11 e M12 - Tirei o conectar, o desconectar, o notificarSucessoConexão e o iniciarPartida daqui!
        
+        //Tem a ver com o método click
         //M13 - Escolher posição da pedra a ser movida e posição desejada para mover
 	public void escolherPosicao() {
 		throw new UnsupportedOperationException();

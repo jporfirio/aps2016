@@ -96,18 +96,6 @@ public class Posicao {
             return coluna;
         }
         
-        public Jogador getJogadorOcupante() {
-            return jogadorOcupante;
-        }
-
-        public boolean isOcupada() {
-            return ocupada;
-        }
-
-        public boolean isPodeMover() {
-            return podeMover;
-        }
-
         public Posicao getPosicaoAcima() {
             return posicaoAcima;
         }
@@ -123,9 +111,10 @@ public class Posicao {
         public Posicao getPosicaoDireita() {
             return posicaoDireita;
         }
-
-        public boolean isCentral() {
-            return central;
+        
+        public void setOcupada(boolean ocupada) {
+            this.ocupada = ocupada;
         }
+
  
 }
