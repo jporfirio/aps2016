@@ -102,7 +102,9 @@ public class AtorJogador {
         if (emAndamento && faseInicial) {
             
                 if (!central && !ocupada) {
+                    tabuleiro.colocarPedra(linha, coluna);
                     posicao.defineJogador(jogadorLocal);
+                    
                     posicao.setOcupada(true);
                     
                     primeiraEscolha = jogadorLocal.informaPrimeiraEscolha();
@@ -166,6 +168,32 @@ public class AtorJogador {
     }
 
     public void receberJogada(Lance jogada) {
-        tabuleiro.receberJogada(jogada);
+        int linha = jogada.informarLinha();
+        int coluna = jogada.informarColuna();
+        Posicao posicao = tabuleiro.informarPosicao(linha, coluna);
+        boolean isPrimeiraColocacao = jogada.isPrimeiraColocacao();
+        boolean isMover = jogada.isMover();
+        boolean isRetirada = jogada.isRetirada();
+        
+        //primeira fase
+        if (!isMover && !isRetirada) {
+            
+            if (!isPrimeiraColocacao) {
+                tabuleiro.colocarPedra(linha, coluna);
+                tabuleiro.passarVez();
+            }
+            
+        //segunda fase
+        } else {
+            if (isMover) {
+                
+            }
+            
+            if (isRetirada) {
+                
+            }
+            
+        }
+        ;
     }
 }

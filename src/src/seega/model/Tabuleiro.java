@@ -80,7 +80,7 @@ public class Tabuleiro {
 	}
 
         //M9, M10, M11 e M12 - Tirei o conectar, o desconectar, o notificarSucessoConexão e o iniciarPartida daqui!
-       
+        
         //Tem a ver com o método click
         //M13 - Escolher posição da pedra a ser movida e posição desejada para mover
 	public void escolherPosicao() {
@@ -147,12 +147,7 @@ public class Tabuleiro {
                 
             }
         }
-        
-        posicoes[2][2].setCentral(true);
-        jogadorLocal = null;
-        jogadorRemoto = null;
-        partidaEmAndamento = false;
-    }
+     }
 
     public String informarEstado() {
         String mensagem = null;
@@ -181,42 +176,8 @@ public class Tabuleiro {
         return mensagem;
      
     }
-    
-    public void receberJogada(Lance jogada) {
-        int linha = jogada.informarLinha();
-        int coluna = jogada.informarColuna();
-        boolean isPrimeiraColocacao = jogada.isPrimeiraColocacao();
-        boolean isMover = jogada.isMover();
-        boolean isRetirada = jogada.isRetirada();
-        
-        //primeira fase
-        if (!isMover && !isRetirada) {
-            
-            if (isPrimeiraColocacao) {
-                
-            } else {
-                passarVez();
-            }
-            
-        //segunda fase
-        } else {
-            if (isMover) {
-                
-            }
-            
-            if (isRetirada) {
-                
-            }
-            
-        }
-        
-    }
 
     //GETTERS
-
-   public Posicao[][] informarPosicoes() {
-        return posicoes;
-    }
    
    public Posicao informarPosicao(int linha, int coluna) {
        for (Posicao[] posicaoArray : posicoes) {
