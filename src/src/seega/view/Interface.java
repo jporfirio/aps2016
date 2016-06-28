@@ -553,10 +553,6 @@ public void conectar() {
         int resultado = jogo.iniciarPartida();
         this.notificarResultado(resultado);
         
-        if (resultado == 6) {
-            this.setVisible(false);
-        }
-        
     }
 
     public String obterIdJogador() {
@@ -571,15 +567,6 @@ public void conectar() {
         return idServidor;
     }
 
-//    public void inicioDeJogo() {
-//       Icon posicaoVazia = new ImageIcon("/resources/images/semPedra.png");
-//        for (int linha = 1; linha <= 5; linha++) {
-//            for (int coluna = 1; coluna <= 5; coluna++) {        
-//                        mapaVPosicao[(linha - 1)][(coluna - 1)].setIcon(posicaoVazia);
-//                }
-//            };
-//    }
-    
     public void click(int linha, int coluna) {
         int resultado = 0;
         resultado = jogo.click(linha, coluna);
@@ -601,9 +588,9 @@ public void conectar() {
                 break;
             case 6:
                 JOptionPane.showMessageDialog(null, "Jogo acabou!");
-                break;    
-            default:
-                this.notificarResultado(resultado);
+                break;             
+            case 7:
+                JOptionPane.showMessageDialog(null, "Jogo não está em andamento");
                 break;
         }
     }
@@ -612,15 +599,15 @@ public void conectar() {
        Icon pedraLocal = new ImageIcon("/resources/images/pedraLocal.png");
        Icon pedraRemoto = new ImageIcon("/resources/images/pedraRemoto.png");
        Icon semPedra = new ImageIcon("/resources/images/semPedra.png");
-        for (int linha = 1; linha <= 5; linha++) {
-            for (int coluna = 1; coluna <= 5; coluna++) {
+        for (int linha = 0; linha < 5; linha++) {
+            for (int coluna = 0; coluna < 5; coluna++) {
                 Posicao posicao = tabuleiro.informarPosicao(linha, coluna);     
                     if (posicao.informarJogadorOcupante() == null) { 
-                        mapaVPosicao[(linha - 1)][(coluna - 1)].setIcon(semPedra);
+                        mapaVPosicao[(linha)][(coluna)].setIcon(semPedra);
                     } else if (posicao.informarJogadorOcupante() instanceof JogadorLocal) {
-                        mapaVPosicao[(linha - 1)][(coluna - 1)].setIcon(pedraLocal);
+                        mapaVPosicao[(linha)][(coluna)].setIcon(pedraLocal);
                     } else {
-                        mapaVPosicao[(linha - 1)][(coluna - 1)].setIcon(pedraRemoto);               
+                        mapaVPosicao[(linha)][(coluna)].setIcon(pedraRemoto);               
                     }
             };
         };
@@ -652,10 +639,10 @@ public void conectar() {
             case 7:
                 JOptionPane.showMessageDialog(this, "Tentativa de inicio sem conexão previamente estabelecida");
                 break;    
-            case 11:
+            case 8:
                 JOptionPane.showMessageDialog(this, "Operação inválida! Não existe uma partida em andamento!");
                 break;
-            case 13:
+            case 9:
                 JOptionPane.showMessageDialog(this, "Partida corrente não interrompida");
                 break;
       

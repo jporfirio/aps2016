@@ -7,7 +7,7 @@ public class Tabuleiro {
 	protected JogadorLocal jogadorLocal;
 	protected Jogador jogadorRemoto;
 	protected Posicao[][] posicoes = new Posicao[5][5];
-	protected boolean faseInicial;
+	protected boolean faseInicial = true;
 	protected boolean partidaEmAndamento;
 	protected boolean vezDoJogadorLocal;
 	protected boolean haGanhador;
@@ -41,12 +41,11 @@ public class Tabuleiro {
 		throw new UnsupportedOperationException();
 	}
 
-        //M3 e M4 - Notificação de derrota / vitória
+        //M3 - Notificação de derrota
 	public void enviaMensagemDerrota() {
 		JOptionPane.showMessageDialog(null, "Que pena! Você perdeu! :[");
-
 	}
-
+        //M4 - Notificação de vitória
 	public void enviaMensagemVitoria() {
 		JOptionPane.showMessageDialog(null, "Parabéns! Você venceu! :D");
 	}
@@ -63,11 +62,11 @@ public class Tabuleiro {
 		throw new UnsupportedOperationException();
 	}
 
-        //ESSE MÉTODO TEM A VER COM O CLICK NO TABULEIRO
 	//M7 - Colocar 2 pedras no tabuleiro por jogador
-	public void colocarPedra(int posicaoX, int posicaoY) {
-		// TODO - implement Tabuleiro.colocarPedra
-		throw new UnsupportedOperationException();
+	public void colocarPedra(Jogador jogador, int posicaoX, int posicaoY) {
+		Posicao posicao = informarPosicao(posicaoX, posicaoY);
+                posicao.defineJogador(jogador);
+                posicao.setOcupada(true);
 	}
 
         //M8 - Passar a vez para o outro jogador
@@ -130,9 +129,11 @@ public class Tabuleiro {
         
     //inicializa as posições na instanciação do Tabuleiro
     public void inicializarPosicoes() {
-        for (int linha = 1; linha <= 5; linha++) {
-            for (int coluna = 1; coluna <= 5; coluna++) {
-                posicoes[(linha-1)][(coluna-1)] = new Posicao();
+        for (int linha = 0; linha < 5; linha++) {
+            for (int coluna = 0; coluna < 5; coluna++) {
+                posicoes[(linha)][(coluna)] = new Posicao();
+                posicoes[(linha)][(coluna)].setLinha(linha);
+                posicoes[(linha)][(coluna)].setColuna(coluna);
                
             }
         }
@@ -164,11 +165,11 @@ public class Tabuleiro {
         } else {
             mensagem = "Partida não está em andamento!";
             if (haGanhador) {
-            if (jogadorRemoto.informarNumPecas() == 0) {
-                mensagem = "Jogador "+jogadorLocal.getNome()+" foi o vencedor. Parabéns!";
-            } else {
-                mensagem = "Jogador "+jogadorRemoto.getNome()+" foi o vencedor. Parabéns!";
-            }
+                if (jogadorRemoto.informarNumPecas() == 0) {
+                    mensagem = "Jogador "+jogadorLocal.getNome()+" foi o vencedor. Parabéns!";
+                } else {
+                    mensagem = "Jogador "+jogadorRemoto.getNome()+" foi o vencedor. Parabéns!";
+                }
             }
         }
 

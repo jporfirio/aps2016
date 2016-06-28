@@ -80,7 +80,7 @@ public class AtorJogador {
         if (!conectado) {
             return 7;
         }
-        return 13;
+        return 9;
     }
     
 
@@ -102,15 +102,12 @@ public class AtorJogador {
         if (emAndamento && faseInicial) {
             
                 if (!central && !ocupada) {
-                    tabuleiro.colocarPedra(linha, coluna);
-                    posicao.defineJogador(jogadorLocal);
                     
-                    posicao.setOcupada(true);
-                    
+                    tabuleiro.colocarPedra(jogadorLocal, linha, coluna);
+                    janela.atualizarWidgets(tabuleiro);
                     primeiraEscolha = jogadorLocal.informaPrimeiraEscolha();
-                    
                     enviarLance(linha, coluna, false, primeiraEscolha, false);
-                    
+                    resultado = 1;
                     if (primeiraEscolha) {
                         
                         jogadorLocal.definePrimeiraEscolhaFalso();
@@ -128,6 +125,10 @@ public class AtorJogador {
                         }
                     tabuleiro.informarEstado();
                     }
+                } else if (central) {
+                    resultado = 3;
+                } else {
+                    resultado = 2;
                 }
             
                 
@@ -138,10 +139,10 @@ public class AtorJogador {
             
             if (jogadorLocal.informarNumPecas() == 0 || jogadorRemoto.informarNumPecas() == 0) {
                 haGanhador = true;
+                resultado = 6;
             } 
         } else {
-            JOptionPane.showMessageDialog(null, "Jogo não está em andamento");
-            resultado = 11;
+            resultado = 7;
         }
 
         return resultado;
@@ -179,8 +180,9 @@ public class AtorJogador {
         if (!isMover && !isRetirada) {
             
             if (!isPrimeiraColocacao) {
-                tabuleiro.colocarPedra(linha, coluna);
+                tabuleiro.colocarPedra(tabuleiro.getJogadorRemoto(), linha, coluna);
                 tabuleiro.passarVez();
+                janela.atualizarWidgets(tabuleiro);
             }
             
         //segunda fase
