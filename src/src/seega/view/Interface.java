@@ -23,151 +23,151 @@ public class Interface extends javax.swing.JFrame {
         jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(1, 1);
+                    click(0, 0);
                 }
          });
         jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(1, 2);
+                    click(0, 1);
                 }
          });
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(1, 3);
+                    click(0, 2);
                 }
          });
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(1, 4);
+                    click(0, 3);
                 }
          });
         jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(1, 5);
+                    click(0, 4);
                 }
          });
         jLabel21.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(2, 1);
+                    click(1, 0);
                 }
          });
         jLabel22.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(2, 2);
+                    click(1, 1);
                 }
          });
         jLabel23.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(2, 3);
+                    click(1, 2);
                 }
          });
         jLabel24.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(2, 4);
+                    click(1, 3);
                 }
          });
         jLabel25.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(2, 5);
+                    click(1, 4);
                 }
          });
         jLabel31.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(3, 1);
+                    click(2, 0);
                 }
          });
         jLabel32.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(3, 2);
+                    click(2, 1);
                 }
          });
         jLabel33.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(3, 3);
+                    click(2, 2);
                 }
          });
         jLabel34.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(3, 4);
+                    click(2, 3);
                 }
          });
         jLabel35.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(3, 5);
+                    click(2, 4);
                 }
          });
         jLabel41.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(4, 1);
+                    click(3, 0);
                 }
          });
         jLabel42.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(4, 2);
+                    click(3, 1);
                 }
          });
         jLabel43.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(4, 3);
+                    click(3, 2);
                 }
          });
         jLabel44.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(4, 4);
+                    click(3, 3);
                 }
          });
         jLabel45.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(4, 5);
+                    click(3, 4);
                 }
          });
         jLabel51.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(5, 1);
+                    click(4, 0);
                 }
          });
         jLabel52.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(5, 2);
+                    click(4, 1);
                 }
          });
         jLabel53.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(5, 3);
+                    click(4, 2);
                 }
          });
         jLabel54.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(5, 4);
+                    click(4, 3);
                 }
          });
         jLabel55.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(5, 5);
+                    click(4, 4);
                 }
          });
        
@@ -193,17 +193,17 @@ public class Interface extends javax.swing.JFrame {
             }
         });
         
-        mapaVPosicao[0][0] = jLabel31;
-        mapaVPosicao[0][1] = jLabel32;
-        mapaVPosicao[0][2] = jLabel33;
-        mapaVPosicao[0][3] = jLabel34;
-        mapaVPosicao[0][4] = jLabel35;
+        mapaVPosicao[0][0] = jLabel11;
+        mapaVPosicao[0][1] = jLabel12;
+        mapaVPosicao[0][2] = jLabel13;
+        mapaVPosicao[0][3] = jLabel14;
+        mapaVPosicao[0][4] = jLabel15;
 
-        mapaVPosicao[1][0] = jLabel51;
-        mapaVPosicao[1][1] = jLabel52;
-        mapaVPosicao[1][2] = jLabel53;
-        mapaVPosicao[1][3] = jLabel54;
-        mapaVPosicao[1][4] = jLabel55;
+        mapaVPosicao[1][0] = jLabel21;
+        mapaVPosicao[1][1] = jLabel22;
+        mapaVPosicao[1][2] = jLabel23;
+        mapaVPosicao[1][3] = jLabel24;
+        mapaVPosicao[1][4] = jLabel25;
 
         mapaVPosicao[2][0] = jLabel31;
         mapaVPosicao[2][1] = jLabel32;
@@ -266,79 +266,54 @@ public class Interface extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/semPedra.png"))); // NOI18N
-        jLabel11.setText("jLabel1");
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/semPedra.png"))); // NOI18N
-        jLabel12.setText("jLabel2");
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/semPedra.png"))); // NOI18N
-        jLabel13.setText("jLabel3");
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/semPedra.png"))); // NOI18N
-        jLabel14.setText("jLabel4");
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/semPedra.png"))); // NOI18N
-        jLabel15.setText("jLabel5");
 
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/semPedra.png"))); // NOI18N
-        jLabel21.setText("jLabel6");
 
         jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/semPedra.png"))); // NOI18N
-        jLabel22.setText("jLabel7");
 
         jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/semPedra.png"))); // NOI18N
-        jLabel23.setText("jLabel8");
 
         jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/semPedra.png"))); // NOI18N
-        jLabel24.setText("jLabel9");
 
         jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/semPedra.png"))); // NOI18N
-        jLabel25.setText("jLabel10");
 
         jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/semPedra.png"))); // NOI18N
-        jLabel31.setText("jLabel11");
 
         jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/semPedra.png"))); // NOI18N
-        jLabel32.setText("jLabel12");
 
         jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/central.png"))); // NOI18N
-        jLabel33.setText("jLabel13");
 
         jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/semPedra.png"))); // NOI18N
-        jLabel34.setText("jLabel14");
 
         jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/semPedra.png"))); // NOI18N
-        jLabel35.setText("jLabel15");
 
         jLabel41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/semPedra.png"))); // NOI18N
-        jLabel41.setText("jLabel16");
 
         jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/semPedra.png"))); // NOI18N
-        jLabel42.setText("jLabel17");
 
         jLabel43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/semPedra.png"))); // NOI18N
-        jLabel43.setText("jLabel18");
 
         jLabel44.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/semPedra.png"))); // NOI18N
-        jLabel44.setText("jLabel19");
 
         jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/semPedra.png"))); // NOI18N
-        jLabel45.setText("jLabel20");
 
         jLabel51.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/semPedra.png"))); // NOI18N
-        jLabel51.setText("jLabel21");
 
         jLabel52.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/semPedra.png"))); // NOI18N
-        jLabel52.setText("jLabel22");
 
         jLabel53.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/semPedra.png"))); // NOI18N
-        jLabel53.setText("jLabel23");
 
         jLabel54.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/semPedra.png"))); // NOI18N
-        jLabel54.setText("jLabel24");
 
         jLabel55.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/semPedra.png"))); // NOI18N
-        jLabel55.setText("jLabel25");
 
         botaoConectar.setText("Conectar");
         botaoConectar.addActionListener(new java.awt.event.ActionListener() {
