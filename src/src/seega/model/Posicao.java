@@ -37,8 +37,16 @@ public class Posicao {
 
         //valida se aquela posição está bloqueada
 	public boolean validarBloqueio() {
-		// TODO - implement Posicao.validarBloqueio
-		throw new UnsupportedOperationException();
+            if (posicaoAcima.informarJogadorOcupante() == null ||
+                   posicaoAbaixo.informarJogadorOcupante() == null ||
+                    posicaoDireita.informarJogadorOcupante() == null ||
+                    posicaoEsquerda.informarJogadorOcupante() == null) {
+                podeMover = true;
+                return true;
+            } else {
+                podeMover = false;
+                return false;
+            }
 	}
 
         //retorna se posição pode ser ocupada
@@ -121,6 +129,24 @@ public class Posicao {
         public Posicao getPosicaoDireita() {
             return posicaoDireita;
         }
+
+        public void setPosicaoAcima(Posicao posicaoAcima) {
+            this.posicaoAcima = posicaoAcima;
+        }
+
+        public void setPosicaoAbaixo(Posicao posicaoAbaixo) {
+            this.posicaoAbaixo = posicaoAbaixo;
+        }
+
+        public void setPosicaoEsquerda(Posicao posicaoEsquerda) {
+            this.posicaoEsquerda = posicaoEsquerda;
+        }
+
+        public void setPosicaoDireita(Posicao posicaoDireita) {
+            this.posicaoDireita = posicaoDireita;
+        }
+        
+        
         
         public void setOcupada(boolean ocupada) {
             this.ocupada = ocupada;

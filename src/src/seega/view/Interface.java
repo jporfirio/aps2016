@@ -20,6 +20,8 @@ public class Interface extends javax.swing.JFrame {
     public Interface() {
         initComponents();
         
+        this.setTitle("Seega");
+        
         jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
@@ -225,7 +227,6 @@ public class Interface extends javax.swing.JFrame {
         
         jogo = new AtorJogador(this);
         
-//        inicioDeJogo();
     }
 
 
@@ -559,22 +560,32 @@ public void conectar() {
                 JOptionPane.showMessageDialog(null, "Pedra selecionada. Selecione a posição desejada para movê-la!");
                 break;
             case 5:
-                JOptionPane.showMessageDialog(null, "Pedra movida com sucesso");
+                JOptionPane.showMessageDialog(null, "Selecione uma pedra sua!");
                 break;
             case 6:
-                JOptionPane.showMessageDialog(null, "Jogo acabou!");
-                break;             
+                JOptionPane.showMessageDialog(null, "Pedra movida com sucesso");
+                break;                       
             case 7:
                 JOptionPane.showMessageDialog(null, "Jogo não está em andamento");
                 break;
+            case 8:
+                JOptionPane.showMessageDialog(null, "Jogo acabou!");
+                break;
+            case 9:
+                JOptionPane.showMessageDialog(null, "Não é a sua vez!");
+                break;
+            case 10:
+                JOptionPane.showMessageDialog(null, "Você está bloqueado. Clique na peça do rival que você deseja remover!");
+                break;     
         }
     }
     
     public void atualizarWidgets(Tabuleiro tabuleiro) {
+       Icon pedraCentral = new ImageIcon(getClass().getResource("/resources/images/central.png"));
        Icon pedraLocal = new ImageIcon(getClass().getResource("/resources/images/pedraLocal.png"));
        Icon pedraRemoto = new ImageIcon(getClass().getResource("/resources/images/pedraRemoto.png"));
        Icon semPedra = new ImageIcon(getClass().getResource("/resources/images/semPedra.png"));
-        for (int linha = 0; linha < 5; linha++) {
+       for (int linha = 0; linha < 5; linha++) {
             for (int coluna = 0; coluna < 5; coluna++) {
                 Posicao posicao = tabuleiro.informarPosicao(linha, coluna);     
                     if (posicao.informarJogadorOcupante() == null) { 
@@ -583,9 +594,13 @@ public void conectar() {
                         mapaVPosicao[(linha)][(coluna)].setIcon(pedraLocal);
                     } else {
                         mapaVPosicao[(linha)][(coluna)].setIcon(pedraRemoto);               
-                    }
+                    }           
             };
         };
+        
+        if (tabuleiro.informarFaseInicial()) {
+            mapaVPosicao[2][2].setIcon(pedraCentral);   
+        }
     }
     
     public void notificarResultado(int codigo) {

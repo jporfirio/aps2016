@@ -34,6 +34,11 @@ public class JogadorLocal extends Jogador {
 	public void definePrimeiraEscolhaVerdadeiro() {
 		primeiraEscolha = true;
 	}
+
+        public boolean isJogadorBloqueado() {
+            return jogadorBloqueado;
+        }
+        
         
         
 

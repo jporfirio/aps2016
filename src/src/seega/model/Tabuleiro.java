@@ -134,10 +134,23 @@ public class Tabuleiro {
                 posicoes[(linha)][(coluna)] = new Posicao();
                 posicoes[(linha)][(coluna)].setLinha(linha);
                 posicoes[(linha)][(coluna)].setColuna(coluna);
-               
+                
+          
             }
         }
         posicoes[2][2].setCentral(true);
+        inicializaAdjacentes();
+    }
+    
+    public void inicializaAdjacentes() {
+        for (int linha = 0; linha < 5; linha++) {
+            for (int coluna = 0; coluna < 5; coluna++) {
+              posicoes[(linha)][(coluna)].setPosicaoAcima(posicoes[(linha-1)][(coluna)]);
+              posicoes[(linha)][(coluna)].setPosicaoAbaixo(posicoes[(linha+1)][(coluna)]);
+              posicoes[(linha)][(coluna)].setPosicaoEsquerda(posicoes[(linha)][(coluna-1)]);
+              posicoes[(linha)][(coluna)].setPosicaoDireita(posicoes[(linha)][(coluna+1)]);
+            }
+        }
     }
     
     //esvazia as posições a cada novo jogo
@@ -150,33 +163,33 @@ public class Tabuleiro {
         }
      }
 
-    public String informarEstado() {
-        String mensagem = null;
-        if (this.informarEmAndamento()) {
-            if (vezDoJogadorLocal) {
-                if(jogadorLocal.primeiraEscolha) {
-                    mensagem = "Vez do jogador " + jogadorLocal.getNome() + " colocar a primeira pedra no tabuleiro.";
-                } else {
-                    mensagem = "Vez do jogador " + jogadorLocal.getNome() + " colocar a segunda pedra no tabuleiro.";
-                }
-            } else {
-                mensagem = "Vez do jogador remoto!";
-            }
-        } else {
-            mensagem = "Partida não está em andamento!";
-            if (haGanhador) {
-                if (jogadorRemoto.informarNumPecas() == 0) {
-                    mensagem = "Jogador "+jogadorLocal.getNome()+" foi o vencedor. Parabéns!";
-                } else {
-                    mensagem = "Jogador "+jogadorRemoto.getNome()+" foi o vencedor. Parabéns!";
-                }
-            }
-        }
-
-        
-        return mensagem;
-     
-    }
+//    public String informarEstado() {
+//        String mensagem = null;
+//        if (this.informarEmAndamento()) {
+//            if (vezDoJogadorLocal) {
+//                if(jogadorLocal.primeiraEscolha) {
+//                    mensagem = "Vez do jogador " + jogadorLocal.getNome() + " colocar a primeira pedra no tabuleiro.";
+//                } else {
+//                    mensagem = "Vez do jogador " + jogadorLocal.getNome() + " colocar a segunda pedra no tabuleiro.";
+//                }
+//            } else {
+//                mensagem = "Vez do jogador remoto!";
+//            }
+//        } else {
+//            mensagem = "Partida não está em andamento!";
+//            if (haGanhador) {
+//                if (jogadorRemoto.informarNumPecas() == 0) {
+//                    mensagem = "Jogador "+jogadorLocal.getNome()+" foi o vencedor. Parabéns!";
+//                } else {
+//                    mensagem = "Jogador "+jogadorRemoto.getNome()+" foi o vencedor. Parabéns!";
+//                }
+//            }
+//        }
+//
+//        
+//        return mensagem;
+//     
+//    }
 
     //GETTERS
    
@@ -191,7 +204,10 @@ public class Tabuleiro {
        return null;
    }
 
-   
+    public Posicao[][] getPosicoes() {
+        return posicoes;
+    }
+
     public JogadorLocal getJogadorLocal() {
         return jogadorLocal;
     }
