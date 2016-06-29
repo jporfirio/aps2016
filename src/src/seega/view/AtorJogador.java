@@ -121,6 +121,7 @@ public class AtorJogador {
                             tabuleiro.mudarFase();
                         } else {
                             tabuleiro.passarVez();
+                            janela.atualizarWidgets(tabuleiro);
                             
                         }
                     tabuleiro.informarEstado();
@@ -176,14 +177,11 @@ public class AtorJogador {
         boolean isMover = jogada.isMover();
         boolean isRetirada = jogada.isRetirada();
         
+
         //primeira fase
         if (!isMover && !isRetirada) {
-            
-            if (!isPrimeiraColocacao) {
                 tabuleiro.colocarPedra(tabuleiro.getJogadorRemoto(), linha, coluna);
-                tabuleiro.passarVez();
-                janela.atualizarWidgets(tabuleiro);
-            }
+            
             
         //segunda fase
         } else {
