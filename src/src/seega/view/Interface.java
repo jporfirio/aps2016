@@ -576,11 +576,17 @@ public void conectar() {
                 break;
             case 10:
                 JOptionPane.showMessageDialog(null, "Você está bloqueado. Clique na peça do rival que você deseja remover!");
+                break;   
+            case 11:
+                JOptionPane.showMessageDialog(null, "Primeira fase encerrada.");
+                break;
+            case 12:
+                JOptionPane.showMessageDialog(null, "Remova uma pedra do adversário.");
                 break;     
         }
     }
     
-    public void atualizarWidgets(Tabuleiro tabuleiro) {
+    public void atualizarTabuleiro(Tabuleiro tabuleiro) {
        Icon pedraCentral = new ImageIcon(getClass().getResource("/resources/images/central.png"));
        Icon pedraLocal = new ImageIcon(getClass().getResource("/resources/images/pedraLocal.png"));
        Icon pedraRemoto = new ImageIcon(getClass().getResource("/resources/images/pedraRemoto.png"));

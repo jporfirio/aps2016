@@ -52,8 +52,9 @@ public class Tabuleiro {
 
 	//M5 - Remover Pedra do Tabuleiro
 	public void removerPedra(int posicaoX, int posicaoY) {
-		// TODO - implement Tabuleiro.removerPedra
-		throw new UnsupportedOperationException();
+		Posicao posicao = informarPosicao(posicaoX, posicaoY);
+                posicao.defineJogador(null);
+                posicao.setOcupada(false);
 	}
 
         //M6 - Verificar se o jogador comeu pedra
@@ -163,36 +164,6 @@ public class Tabuleiro {
         }
      }
 
-//    public String informarEstado() {
-//        String mensagem = null;
-//        if (this.informarEmAndamento()) {
-//            if (vezDoJogadorLocal) {
-//                if(jogadorLocal.primeiraEscolha) {
-//                    mensagem = "Vez do jogador " + jogadorLocal.getNome() + " colocar a primeira pedra no tabuleiro.";
-//                } else {
-//                    mensagem = "Vez do jogador " + jogadorLocal.getNome() + " colocar a segunda pedra no tabuleiro.";
-//                }
-//            } else {
-//                mensagem = "Vez do jogador remoto!";
-//            }
-//        } else {
-//            mensagem = "Partida não está em andamento!";
-//            if (haGanhador) {
-//                if (jogadorRemoto.informarNumPecas() == 0) {
-//                    mensagem = "Jogador "+jogadorLocal.getNome()+" foi o vencedor. Parabéns!";
-//                } else {
-//                    mensagem = "Jogador "+jogadorRemoto.getNome()+" foi o vencedor. Parabéns!";
-//                }
-//            }
-//        }
-//
-//        
-//        return mensagem;
-//     
-//    }
-
-    //GETTERS
-   
    public Posicao informarPosicao(int linha, int coluna) {
        for (Posicao[] posicaoArray : posicoes) {
            for (Posicao posicao : posicaoArray) {

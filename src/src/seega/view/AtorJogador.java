@@ -100,19 +100,15 @@ public class AtorJogador {
         if (tabuleiro.isVezDoJogadorLocal()) {
             //colocar pedra
             if (emAndamento && faseInicial) {
-
                     if (!central && !ocupada) {
-
                         tabuleiro.colocarPedra(jogadorLocal, linha, coluna);
-                        janela.atualizarWidgets(tabuleiro);
+                        janela.atualizarTabuleiro(tabuleiro);
                         primeiraEscolha = jogadorLocal.informaPrimeiraEscolha();
                         enviarLance(linha, coluna, false, primeiraEscolha, false);
                         jogadorLocal.incrementaNumPecas();
                         resultado = 1;
                         if (primeiraEscolha) {
-
                             jogadorLocal.definePrimeiraEscolhaFalso();
-                            //tabuleiro.informarEstado();
                         } else {
                             jogadorLocal.definePrimeiraEscolhaVerdadeiro();
                             int jogLocal = jogadorLocal.informarNumPecas();
@@ -120,12 +116,14 @@ public class AtorJogador {
 
                             if (jogLocal==12 && jogRemoto ==12) {
                                 tabuleiro.mudarFase();
+                                resultado=11;
+                                if (jogadorLocal.isJogadorBloqueado()) {
+                                    resultado=10;
+                                }
                             } else {
                                 tabuleiro.passarVez();
-                                janela.atualizarWidgets(tabuleiro);
-
+                                janela.atualizarTabuleiro(tabuleiro);
                             }
-                        //tabuleiro.informarEstado();
                         }
                     } else if (central) {
                         resultado = 3;
@@ -133,23 +131,17 @@ public class AtorJogador {
                         resultado = 2;
                     }
 
-
-
-
             //segunda fase
-            } else if (emAndamento && !faseInicial) {
-                
-                //valida se jogador está bloqueado
-               
-                
-               
-               
+            } else if (emAndamento && !faseInicial) {                                               
+                verificaBloqueio();          
                 if (jogadorLocal.isJogadorBloqueado()) {
-                    resultado = 10;
-                    
-                    
-                }
-                  
+                    if (posicao.informarJogadorOcupante() instanceof JogadorLocal) {
+                        resultado=12;
+                    } else {
+                        tabuleiro.removerPedra(linha, coluna);
+                        tabuleiro.passarVez();
+                    }                
+                }                  
                 if (jogadorLocal.informarNumPecas() == 0 || jogadorRemoto.informarNumPecas() == 0) {
                     haGanhador = true;
                     resultado = 8;
@@ -179,7 +171,6 @@ public class AtorJogador {
         
         //aqui ele seta o jogador local como da vez
         tabuleiro.setarDaVez(posicao);
-        //tabuleiro.informarEstado();
 
     }
 
@@ -195,7 +186,7 @@ public class AtorJogador {
         //primeira fase
         if (!isMover && !isRetirada) {
                 tabuleiro.colocarPedra(tabuleiro.getJogadorRemoto(), linha, coluna);
-                janela.atualizarWidgets(tabuleiro);
+                janela.atualizarTabuleiro(tabuleiro);
                 
                  if (tabuleiro.getJogadorLocal().informarNumPecas()==12 && tabuleiro.getJogadorRemoto().informarNumPecas()==12) {
                     tabuleiro.mudarFase();
@@ -214,8 +205,7 @@ public class AtorJogador {
         }
         ;
     }
-    
-    
+ 
     public boolean verificaBloqueio() {
         JogadorLocal jogadorLocal = tabuleiro.getJogadorLocal();    
         for (Posicao[] posicaoArray : tabuleiro.getPosicoes()) {
