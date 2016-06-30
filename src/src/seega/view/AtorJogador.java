@@ -117,10 +117,10 @@ public class AtorJogador {
                             int jogRemoto = jogadorRemoto.informarNumPecas();
                             
                             if (jogLocal==12 && jogRemoto ==12) {
-                                tabuleiro.mudarFase();
-                                tabuleiro.esvaziarPosicoes();
+                                tabuleiro.mudarFase();                              
                                 janela.atualizarTabuleiro(tabuleiro);
                                 resultado=11;
+                                verificaBloqueio();
                                 if (jogadorLocal.isJogadorBloqueado()) {
                                     resultado=10;
                                 }
@@ -144,9 +144,11 @@ public class AtorJogador {
                     } else {
                         
                         if (posicao.validarRemover()) {
-                            tabuleiro.removerPedra(linha, coluna);
+                            tabuleiro.removerPedra(jogadorRemoto, linha, coluna);
+                            janela.atualizarTabuleiro(tabuleiro);
                             jogadorRemoto.decrementaNumPecas();
                             jogadorLocal.defineDesbloqueado();
+                            enviarLance(linha, coluna, true, false, false);
                             tabuleiro.passarVez();
                         }
                     }                
@@ -223,6 +225,7 @@ public class AtorJogador {
                 }
                 if (tabuleiro.getJogadorLocal().informarNumPecas()==12 && tabuleiro.getJogadorRemoto().informarNumPecas()==12) {
                     tabuleiro.mudarFase();
+                    janela.atualizarTabuleiro(tabuleiro);
                  }         
             
         //segunda fase
@@ -232,6 +235,10 @@ public class AtorJogador {
             }
             
             if (isRetirada) {
+                tabuleiro.removerPedra(tabuleiro.getJogadorLocal(), linha, coluna);
+                tabuleiro.getJogadorRemoto().decrementaNumPecas();
+                janela.atualizarTabuleiro(tabuleiro);
+                tabuleiro.receberVez();
                 
             }
             

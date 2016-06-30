@@ -51,7 +51,7 @@ public class Tabuleiro {
 	}
 
 	//M5 - Remover Pedra do Tabuleiro
-	public void removerPedra(int posicaoX, int posicaoY) {
+	public void removerPedra(Jogador jogador, int posicaoX, int posicaoY) {
 		Posicao posicao = informarPosicao(posicaoX, posicaoY);
                 posicao.defineJogador(null);
                 posicao.setOcupada(false);
@@ -136,16 +136,33 @@ public class Tabuleiro {
             }
         }
         posicoes[2][2].setCentral(true);
-        //inicializaAdjacentes();
+        inicializaAdjacentes();
     }
     
     public void inicializaAdjacentes() {
         for (int linha = 0; linha < 5; linha++) {
             for (int coluna = 0; coluna < 5; coluna++) {
-              posicoes[(linha)][(coluna)].setPosicaoAcima(posicoes[(linha-1)][(coluna)]);
-              posicoes[(linha)][(coluna)].setPosicaoAbaixo(posicoes[(linha+1)][(coluna)]);
-              posicoes[(linha)][(coluna)].setPosicaoEsquerda(posicoes[(linha)][(coluna-1)]);
-              posicoes[(linha)][(coluna)].setPosicaoDireita(posicoes[(linha)][(coluna+1)]);
+                if (linha - 1 != -1) {
+                    posicoes[(linha)][(coluna)].setPosicaoAcima(posicoes[(linha-1)][(coluna)]);
+                } else {
+                    posicoes[(linha)][(coluna)].setPosicaoAcima(null);
+                }
+                
+                if (linha +1 != 5) {
+                    posicoes[(linha)][(coluna)].setPosicaoAbaixo(posicoes[(linha+1)][(coluna)]);
+                } else {
+                    posicoes[(linha)][(coluna)].setPosicaoAbaixo(null);
+                }
+                if (coluna - 1 != -1) {
+                    posicoes[(linha)][(coluna)].setPosicaoEsquerda(posicoes[(linha)][(coluna-1)]);
+                } else {
+                    posicoes[(linha)][(coluna)].setPosicaoEsquerda(null);
+                }
+                if (coluna + 1 != 5) {
+                    posicoes[(linha)][(coluna)].setPosicaoDireita(posicoes[(linha)][(coluna+1)]);
+                } else {
+                    posicoes[(linha)][(coluna)].setPosicaoDireita(null);
+                }
             }
         }
     }
@@ -158,11 +175,6 @@ public class Tabuleiro {
                 
             }
         }
-        
-        if (!faseInicial) {
-            posicoes[2][2].setCentral(false);
-        }
-        
      }
 
    public Posicao informarPosicao(int linha, int coluna) {
