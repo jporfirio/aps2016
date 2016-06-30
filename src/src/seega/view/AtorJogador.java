@@ -111,11 +111,15 @@ public class AtorJogador {
                             jogadorLocal.definePrimeiraEscolhaFalso();
                         } else {
                             jogadorLocal.definePrimeiraEscolhaVerdadeiro();
+                            tabuleiro.passarVez();
+                            
                             int jogLocal = jogadorLocal.informarNumPecas();
                             int jogRemoto = jogadorRemoto.informarNumPecas();
-
+                            
                             if (jogLocal==12 && jogRemoto ==12) {
                                 tabuleiro.mudarFase();
+                                tabuleiro.esvaziarPosicoes();
+                                janela.atualizarTabuleiro(tabuleiro);
                                 resultado=11;
                                 if (jogadorLocal.isJogadorBloqueado()) {
                                     resultado=10;
@@ -138,10 +142,33 @@ public class AtorJogador {
                     if (posicao.informarJogadorOcupante() instanceof JogadorLocal) {
                         resultado=12;
                     } else {
-                        tabuleiro.removerPedra(linha, coluna);
-                        tabuleiro.passarVez();
+                        
+                        if (posicao.validarRemover()) {
+                            tabuleiro.removerPedra(linha, coluna);
+                            jogadorRemoto.decrementaNumPecas();
+                            jogadorLocal.defineDesbloqueado();
+                            tabuleiro.passarVez();
+                        }
                     }                
-                }                  
+                } else {
+                     primeiraEscolha = jogadorLocal.informaPrimeiraEscolha();
+                     
+                     if (primeiraEscolha) {
+                         
+                         if (posicao.informarJogadorOcupante() instanceof JogadorLocal) {
+                             posicao.validarBloqueio();
+                             if (posicao.informarPodeMover()) {
+                                 
+                             }
+                         } else {
+                             resultado=5;
+                         }
+
+                     } else {
+                         
+                     }
+                    
+                }               
                 if (jogadorLocal.informarNumPecas() == 0 || jogadorRemoto.informarNumPecas() == 0) {
                     haGanhador = true;
                     resultado = 8;
@@ -182,13 +209,19 @@ public class AtorJogador {
         boolean isMover = jogada.isMover();
         boolean isRetirada = jogada.isRetirada();
         
-
+    
         //primeira fase
         if (!isMover && !isRetirada) {
                 tabuleiro.colocarPedra(tabuleiro.getJogadorRemoto(), linha, coluna);
+                tabuleiro.getJogadorRemoto().incrementaNumPecas();
                 janela.atualizarTabuleiro(tabuleiro);
                 
-                 if (tabuleiro.getJogadorLocal().informarNumPecas()==12 && tabuleiro.getJogadorRemoto().informarNumPecas()==12) {
+                if (!isPrimeiraColocacao) {
+                    tabuleiro.receberVez();
+                } else {
+                    tabuleiro.passarVez();
+                }
+                if (tabuleiro.getJogadorLocal().informarNumPecas()==12 && tabuleiro.getJogadorRemoto().informarNumPecas()==12) {
                     tabuleiro.mudarFase();
                  }         
             

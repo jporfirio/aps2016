@@ -9,7 +9,7 @@ public class Tabuleiro {
 	protected Posicao[][] posicoes = new Posicao[5][5];
 	protected boolean faseInicial = true;
 	protected boolean partidaEmAndamento;
-	protected boolean vezDoJogadorLocal;
+	protected boolean vezDoJogadorLocal; //VR ISSO
 	protected boolean haGanhador;
 	protected boolean conectado;
 
@@ -72,11 +72,7 @@ public class Tabuleiro {
 
         //M8 - Passar a vez para o outro jogador
 	public void passarVez() {
-            if (vezDoJogadorLocal) {
                 vezDoJogadorLocal = false;
-            } else {
-                vezDoJogadorLocal = true;
-            }        
 	}
 
         //M9, M10, M11 e M12 - Tirei o conectar, o desconectar, o notificarSucessoConexão e o iniciarPartida daqui!
@@ -140,7 +136,7 @@ public class Tabuleiro {
             }
         }
         posicoes[2][2].setCentral(true);
-        inicializaAdjacentes();
+        //inicializaAdjacentes();
     }
     
     public void inicializaAdjacentes() {
@@ -154,7 +150,7 @@ public class Tabuleiro {
         }
     }
     
-    //esvazia as posições a cada novo jogo
+    //esvazia as posições a cada nova rodada
      public void esvaziarPosicoes() {
         for (int linha = 1; linha <= 5; linha++) {
             for (int coluna = 1; coluna <=5; coluna++) {
@@ -162,6 +158,11 @@ public class Tabuleiro {
                 
             }
         }
+        
+        if (!faseInicial) {
+            posicoes[2][2].setCentral(false);
+        }
+        
      }
 
    public Posicao informarPosicao(int linha, int coluna) {

@@ -26,8 +26,13 @@ public class Posicao {
 
         //valida se posição pode ser removida com os outros atributos
 	public boolean validarRemover() {
-		// TODO - implement Posicao.validarRemover
-		throw new UnsupportedOperationException();
+		if (posicaoAcima.informarJogadorOcupante() == jogadorOcupante ||
+                      posicaoAbaixo.informarJogadorOcupante() == jogadorOcupante ||
+                        posicaoEsquerda.informarJogadorOcupante() == jogadorOcupante || 
+                            posicaoDireita.informarJogadorOcupante() == jogadorOcupante) {
+                    return true;
+                }
+        return false; 
 	}
 
         //remove jogador ocupante
