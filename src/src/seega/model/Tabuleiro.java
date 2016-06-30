@@ -1,6 +1,7 @@
 package src.seega.model;
 
 import javax.swing.JOptionPane;
+import src.seega.view.AtorJogador;
 
 public class Tabuleiro {
 
@@ -37,17 +38,25 @@ public class Tabuleiro {
 
         //M2 - Verificar se há ganhador na partida
 	public void verificaGanhador() {
-		// TODO - implement Tabuleiro.verificaGanhador
-		throw new UnsupportedOperationException();
+		if (jogadorLocal.informarNumPecas() < 2) {
+                    enviaMensagemDerrota(jogadorLocal); 
+                    
+                    haGanhador = true;
+                    partidaEmAndamento = false;
+                } else {
+                    if (jogadorRemoto.informarNumPecas() < 2) {
+                        enviaMensagemVitoria(jogadorLocal);
+                    }         
+                }
 	}
 
         //M3 - Notificação de derrota
-	public void enviaMensagemDerrota() {
-		JOptionPane.showMessageDialog(null, "Que pena! Você perdeu! :[");
+	public void enviaMensagemDerrota(Jogador jogador) {
+		JOptionPane.showMessageDialog(null, "Que pena "+jogador.getNome()+"! Você perdeu! :[");
 	}
         //M4 - Notificação de vitória
-	public void enviaMensagemVitoria() {
-		JOptionPane.showMessageDialog(null, "Parabéns! Você venceu! :D");
+	public void enviaMensagemVitoria(Jogador jogador) {
+		JOptionPane.showMessageDialog(null, "Parabéns "+jogador.getNome()+"! Você venceu! :D");
 	}
 
 	//M5 - Remover Pedra do Tabuleiro
@@ -58,9 +67,24 @@ public class Tabuleiro {
 	}
 
         //M6 - Verificar se o jogador comeu pedra
-	public void verificarComeuPedra() {
-		// TODO - implement Tabuleiro.verificarComeuPedra
-		throw new UnsupportedOperationException();
+	public boolean verificarComeuPedra(AtorJogador jogo) {
+                boolean comeuPedra = false;
+		 for (Posicao[] posicaoArray : posicoes) {
+                        for (Posicao posicao : posicaoArray) {
+                            if (posicao.informarJogadorOcupante() == jogadorRemoto) {
+                                if ((posicao.getPosicaoAbaixo().informarJogadorOcupante() == jogadorLocal && posicao.getPosicaoAcima().informarJogadorOcupante() == jogadorLocal) ||
+                                        (posicao.getPosicaoEsquerda().informarJogadorOcupante() == jogadorLocal && posicao.getPosicaoDireita().informarJogadorOcupante() == jogadorLocal)) {
+                                    removerPedra(jogadorRemoto, posicao.getLinha(), posicao.getColuna());
+                                    jogo.enviarLance(posicao.getLinha(), posicao.getColuna(), false, false, false, true);
+                                    jogadorRemoto.decrementaNumPecas();
+                                    jogadorLocal.defineComeuVerdadeiro();
+                                    comeuPedra=true;
+                                }
+                            }
+                        }
+                 }
+                 
+                 return comeuPedra;
 	}
 
 	//M7 - Colocar 2 pedras no tabuleiro por jogador

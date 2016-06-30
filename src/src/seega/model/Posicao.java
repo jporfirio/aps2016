@@ -24,12 +24,12 @@ public class Posicao {
 		throw new UnsupportedOperationException();
 	}
 
-        //valida se posição pode ser removida com os outros atributos
+        //valida se posição pode ser removida. Verificar se a posição escolhida para remoção possui alguma posição adjacente do outro jogador
 	public boolean validarRemover() {
-		if (posicaoAcima.informarJogadorOcupante() == jogadorOcupante ||
-                      posicaoAbaixo.informarJogadorOcupante() == jogadorOcupante ||
-                        posicaoEsquerda.informarJogadorOcupante() == jogadorOcupante || 
-                            posicaoDireita.informarJogadorOcupante() == jogadorOcupante) {
+		if ((posicaoAcima != null && posicaoAcima.informarJogadorOcupante() != jogadorOcupante) ||
+                      (posicaoAbaixo != null && posicaoAbaixo.informarJogadorOcupante() != jogadorOcupante) ||
+                        (posicaoEsquerda != null && posicaoEsquerda.informarJogadorOcupante() != jogadorOcupante) || 
+                            (posicaoDireita != null && posicaoDireita.informarJogadorOcupante() != jogadorOcupante)) {
                     return true;
                 }
         return false; 
@@ -42,15 +42,15 @@ public class Posicao {
 
         //valida se aquela posição está bloqueada
 	public boolean validarBloqueio() {
-            if (posicaoAcima.informarJogadorOcupante() == null ||
-                   posicaoAbaixo.informarJogadorOcupante() == null ||
-                    posicaoDireita.informarJogadorOcupante() == null ||
-                    posicaoEsquerda.informarJogadorOcupante() == null) {
+            if ((posicaoAcima != null && posicaoAcima.informarJogadorOcupante() == null) ||
+                   (posicaoAbaixo != null && posicaoAbaixo.informarJogadorOcupante() == null) ||
+                    (posicaoDireita != null && posicaoDireita.informarJogadorOcupante() == null) ||
+                    (posicaoEsquerda != null && posicaoEsquerda.informarJogadorOcupante() == null)) {
                 podeMover = true;
-                return true;
+                return false;
             } else {
                 podeMover = false;
-                return false;
+                return true;
             }
 	}
 
