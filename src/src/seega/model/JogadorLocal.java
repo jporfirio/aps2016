@@ -2,7 +2,7 @@ package src.seega.model;
 
 public class JogadorLocal extends Jogador {
 
-	protected boolean primeiraEscolha = true;
+	protected boolean primeiraEscolha = true; 
 	protected Posicao pedraEscolhida;
 	protected boolean jogadorBloqueado;
 	protected boolean comeuPedra;
@@ -35,6 +35,8 @@ public class JogadorLocal extends Jogador {
 		primeiraEscolha = true;
 	}
 
+        
+        //MÉTODOS NOVOS QUE NAO ESTÃO NO DIAGRAMA DE CLASSE
         public boolean isJogadorBloqueado() {
             return jogadorBloqueado;
         }

@@ -10,7 +10,7 @@ public class Tabuleiro {
 	protected Posicao[][] posicoes = new Posicao[5][5];
 	protected boolean faseInicial = true;
 	protected boolean partidaEmAndamento;
-	protected boolean vezDoJogadorLocal; //VR ISSO
+	protected boolean vezDoJogadorLocal; 
 	protected boolean haGanhador;
 	protected boolean conectado;
 
@@ -54,6 +54,7 @@ public class Tabuleiro {
 	public void enviaMensagemDerrota(Jogador jogador) {
 		JOptionPane.showMessageDialog(null, "Que pena "+jogador.getNome()+"! Você perdeu! :[");
 	}
+        
         //M4 - Notificação de vitória
 	public void enviaMensagemVitoria(Jogador jogador) {
 		JOptionPane.showMessageDialog(null, "Parabéns "+jogador.getNome()+"! Você venceu! :D");
@@ -99,9 +100,9 @@ public class Tabuleiro {
                 vezDoJogadorLocal = false;
 	}
 
-        //M9, M10, M11 e M12 - Tirei o conectar, o desconectar, o notificarSucessoConexão e o iniciarPartida daqui!
+        //M9, M10, M11 e M12 - Tirei o conectar, o desconectar, o notificarSucessoConexão e o iniciarPartida daqui e coloquei no AtorJogador!
         
-        //Tem a ver com o método click
+        //Tem a ver com o método click do AtorJogador
         //M13 - Escolher posição da pedra a ser movida e posição desejada para mover
 	public void escolherPosicao() {
 		throw new UnsupportedOperationException();
@@ -112,12 +113,14 @@ public class Tabuleiro {
 		faseInicial = false;
 	}
 
+        //Tratei isso no receberJogada, tem que verificar
         //M15 - Receber movimento do jogador Remoto, atualizando tabuleiro local
 	public void receberMovimento(Posicao origem, Posicao destino) {
 		// TODO - implement Tabuleiro.receberMovimento
 		throw new UnsupportedOperationException();
 	}
 
+        //Tratei isso no receberJogada, tem que verificar
         //M16 - Receber remoção de pedra do jogador remoto, atualizando tabuleiro local
 	public void receberRemocaoPedra(Posicao pedra) {
 		// TODO - implement Tabuleiro.receberRemocaoPedra
@@ -129,13 +132,18 @@ public class Tabuleiro {
             vezDoJogadorLocal = true;              
 	}
 
-        //M18 - Receber solicitação de inicio após o Jogador Remoto iniciar o jogo
-        //Esse é o método TratarIniciarPartida do AtorJogador
+        //Tratei isso no método tratarIniciarPartida do AtorJogador
+        //M18 - Receber solicitação de inicio após o Jogador Remoto iniciar o jogo  
 	public void receberSolicitacaoInicio() {
 		// TODO - implement Tabuleiro.receberSolicitacaoInicio
 		throw new UnsupportedOperationException();
 	}
        
+        
+        
+        //MÉTODOS NOVOS QUE NÃO CONSTAM NO DIAGRAMAS DE CLASSE
+        
+        
         //Instanciar os dois jogadores
         public void criarJogador(String idJogador) {
         if (jogadorLocal == null) {

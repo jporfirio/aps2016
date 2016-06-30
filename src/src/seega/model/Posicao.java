@@ -10,8 +10,8 @@ public class Posicao {
 	protected Posicao posicaoEsquerda;
 	protected Posicao posicaoDireita;
 	protected boolean central;
-        protected int linha;
-        protected int coluna;
+        protected int linha; //NÃO CONSTA NO DIAGRAMA DE CLASSE
+        protected int coluna; //NÃO CONSTA NO DIAGRAMA DE CLASSE
 
 
 	public Jogador informarJogadorOcupante() {
@@ -80,12 +80,7 @@ public class Posicao {
             return podeMover;
 	}
 
-	/**
-	 * 
-	 * @param posicao
-	 * @param coordenadaX
-	 * @param coordenadaY
-	 */
+	//TEM A VER COM O CLICK DO ATOR JOGADOR, NAO VEJO UTILIDADE DESSE METODO AQUI
 	public void definePosicao(Posicao posicao, int coordenadaX, int coordenadaY) {
 		// TODO - implement Posicao.definePosicao
 		throw new UnsupportedOperationException();
@@ -96,6 +91,8 @@ public class Posicao {
 	}
 
         
+        
+       //MÉTODOS QUE NÃO CONSTAM NO DIAGRAMA DE CLASSE 
        public void esvaziar() {
             this.jogadorOcupante = null;
             this.ocupada = false;
