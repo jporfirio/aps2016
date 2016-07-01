@@ -119,16 +119,17 @@ public class AtorJogador {
                             if (jogLocal==12 && jogRemoto ==12) {
                                 tabuleiro.mudarFase();                              
                                 janela.atualizarTabuleiro(tabuleiro);
-                                resultado=11;
-                                verificaBloqueio();
-                                jogadorLocal.definePrimeiraEscolhaVerdadeiro();
-                                if (jogadorLocal.isJogadorBloqueado()) {
-                                    resultado=13;
-                                }
-                            } else {
+                            }
+//                                resultado=11;
+//                                verificaBloqueio();
+//                                jogadorLocal.definePrimeiraEscolhaVerdadeiro();
+//                                if (jogadorLocal.isJogadorBloqueado()) {
+//                                    resultado=13;
+//                                }
+//                            } else {
                                 tabuleiro.passarVez();
                                 janela.atualizarTabuleiro(tabuleiro);
-                            }
+                            
                         }
                     } else if (central) {
                         resultado = 3;
@@ -140,6 +141,7 @@ public class AtorJogador {
             } else if (emAndamento && !faseInicial) {                                               
                 verificaBloqueio();          
                 if (jogadorLocal.isJogadorBloqueado()) {
+                    JOptionPane.showMessageDialog(janela, "Você está bloqueado. Remova uma pedra do oponente!");
                     if (posicao.informarJogadorOcupante() instanceof JogadorLocal) {
                         resultado=12;
                     } else {
@@ -231,7 +233,7 @@ public class AtorJogador {
         boolean isComer = jogada.isComer();
     
         //primeira fase
-        if (!isMover && !isRetirada) {
+        if (!isMover && !isRetirada && !isComer) {
                 tabuleiro.colocarPedra(tabuleiro.getJogadorRemoto(), linha, coluna);
                 tabuleiro.getJogadorRemoto().incrementaNumPecas();
                 janela.atualizarTabuleiro(tabuleiro);
