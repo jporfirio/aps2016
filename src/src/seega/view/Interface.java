@@ -582,7 +582,10 @@ public void conectar() {
                 break;
             case 12:
                 JOptionPane.showMessageDialog(null, "Remova uma pedra do adversário.");
-                break;     
+                break;  
+            case 13:
+                JOptionPane.showMessageDialog(null, "Primeira fase encerrada e você está bloqueado. Clique na peça do rival que você deseja remover para iniciar a segunda fase!.");
+                break;    
         }
     }
     

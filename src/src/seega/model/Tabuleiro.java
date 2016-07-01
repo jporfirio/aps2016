@@ -73,8 +73,10 @@ public class Tabuleiro {
 		 for (Posicao[] posicaoArray : posicoes) {
                         for (Posicao posicao : posicaoArray) {
                             if (posicao.informarJogadorOcupante() == jogadorRemoto) {
-                                if ((posicao.getPosicaoAbaixo().informarJogadorOcupante() == jogadorLocal && posicao.getPosicaoAcima().informarJogadorOcupante() == jogadorLocal) ||
-                                        (posicao.getPosicaoEsquerda().informarJogadorOcupante() == jogadorLocal && posicao.getPosicaoDireita().informarJogadorOcupante() == jogadorLocal)) {
+                                if ((posicao.getPosicaoAbaixo() != null && posicao.getPosicaoAbaixo().informarJogadorOcupante() != null && posicao.getPosicaoAbaixo().informarJogadorOcupante()  == jogadorLocal && 
+                                        posicao.getPosicaoAcima() != null && posicao.getPosicaoAcima().informarJogadorOcupante() != null &&  posicao.getPosicaoAcima().informarJogadorOcupante() == jogadorLocal) ||
+                                        (posicao.getPosicaoEsquerda() != null && posicao.getPosicaoEsquerda().informarJogadorOcupante() != null && posicao.getPosicaoEsquerda().informarJogadorOcupante() == jogadorLocal && 
+                                            posicao.getPosicaoDireita() != null && posicao.getPosicaoDireita().informarJogadorOcupante() != null && posicao.getPosicaoDireita().informarJogadorOcupante() == jogadorLocal)) {
                                     removerPedra(jogadorRemoto, posicao.getLinha(), posicao.getColuna());
                                     jogo.enviarLance(posicao.getLinha(), posicao.getColuna(), false, false, false, true);
                                     jogadorRemoto.decrementaNumPecas();

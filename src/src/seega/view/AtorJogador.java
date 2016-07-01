@@ -111,7 +111,7 @@ public class AtorJogador {
                             jogadorLocal.definePrimeiraEscolhaFalso();
                         } else {
                             jogadorLocal.definePrimeiraEscolhaVerdadeiro();
-                            tabuleiro.passarVez();
+                            
                             
                             int jogLocal = jogadorLocal.informarNumPecas();
                             int jogRemoto = jogadorRemoto.informarNumPecas();
@@ -123,7 +123,7 @@ public class AtorJogador {
                                 verificaBloqueio();
                                 jogadorLocal.definePrimeiraEscolhaVerdadeiro();
                                 if (jogadorLocal.isJogadorBloqueado()) {
-                                    resultado=10;
+                                    resultado=13;
                                 }
                             } else {
                                 tabuleiro.passarVez();
@@ -149,8 +149,9 @@ public class AtorJogador {
                             janela.atualizarTabuleiro(tabuleiro);
                             jogadorRemoto.decrementaNumPecas();
                             jogadorLocal.defineDesbloqueado();
-                            enviarLance(linha, coluna, true, false, false, false);
                             tabuleiro.passarVez();
+                            enviarLance(linha, coluna, true, false, false, false);
+
                         }
                     }                
                 } else {
@@ -173,8 +174,8 @@ public class AtorJogador {
                          
                          if (posicao.informarJogadorOcupante() == null) {
                              tabuleiro.colocarPedra(jogadorLocal, linha, coluna);
-                             jogadorLocal.definePrimeiraEscolhaVerdadeiro();
                              janela.atualizarTabuleiro(tabuleiro);
+                             jogadorLocal.definePrimeiraEscolhaVerdadeiro();
                              enviarLance(linha, coluna, false, false, true, false);
                              
                              if (tabuleiro.verificarComeuPedra(this)) {
