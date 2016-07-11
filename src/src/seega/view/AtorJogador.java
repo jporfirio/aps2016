@@ -18,6 +18,7 @@ public class AtorJogador {
     protected AtorNetGames rede;
     protected Tabuleiro tabuleiro;
     protected Interface janela;
+    protected Posicao posicaoPrimeiraEscolha;
 
     public AtorJogador(Interface janela) {
         super();
@@ -120,13 +121,7 @@ public class AtorJogador {
                                 tabuleiro.mudarFase();                              
                                 janela.atualizarTabuleiro(tabuleiro);
                             }
-//                                resultado=11;
-//                                verificaBloqueio();
-//                                jogadorLocal.definePrimeiraEscolhaVerdadeiro();
-//                                if (jogadorLocal.isJogadorBloqueado()) {
-//                                    resultado=13;
-//                                }
-//                            } else {
+
                                 tabuleiro.passarVez();
                                 janela.atualizarTabuleiro(tabuleiro);
                             
@@ -150,7 +145,8 @@ public class AtorJogador {
                             tabuleiro.removerPedra(jogadorRemoto, linha, coluna);
                             janela.atualizarTabuleiro(tabuleiro);
                             jogadorRemoto.decrementaNumPecas();
-                            jogadorLocal.defineDesbloqueado();
+                            int numPecasComidas = 12-jogadorRemoto.informarNumPecas();
+                            janela.getComidas().setText("x "+numPecasComidas);                            jogadorLocal.defineDesbloqueado();
                             tabuleiro.passarVez();
                             enviarLance(linha, coluna, true, false, false, false);
 
@@ -160,7 +156,7 @@ public class AtorJogador {
                      primeiraEscolha = jogadorLocal.informaPrimeiraEscolha();
                      
                      if (primeiraEscolha) {
-                         
+                         posicaoPrimeiraEscolha = posicao;
                          if (posicao.informarJogadorOcupante() instanceof JogadorLocal) {
                              posicao.validarBloqueio();
                              if (posicao.informarPodeMover()) {
@@ -174,13 +170,13 @@ public class AtorJogador {
 
                      } else {
                          
-                         if (posicao.informarJogadorOcupante() == null) {
+                         if (posicao.informarJogadorOcupante() == null && ((posicao.getPosicaoAcima() == posicaoPrimeiraEscolha) || (posicao.getPosicaoAbaixo() == posicaoPrimeiraEscolha) || (posicao.getPosicaoEsquerda() == posicaoPrimeiraEscolha) || (posicao.getPosicaoDireita() == posicaoPrimeiraEscolha)) )  {
                              tabuleiro.colocarPedra(jogadorLocal, linha, coluna);
                              janela.atualizarTabuleiro(tabuleiro);
                              jogadorLocal.definePrimeiraEscolhaVerdadeiro();
                              enviarLance(linha, coluna, false, false, true, false);
                              
-                             if (tabuleiro.verificarComeuPedra(this)) {
+                             if (tabuleiro.verificarComeuPedra(this)) { 
                                  janela.atualizarTabuleiro(tabuleiro);
                              } else {
                                  tabuleiro.passarVez();
@@ -261,11 +257,15 @@ public class AtorJogador {
                 tabuleiro.removerPedra(tabuleiro.getJogadorLocal(), linha, coluna);
                 tabuleiro.getJogadorLocal().decrementaNumPecas();
                 janela.atualizarTabuleiro(tabuleiro);
+                int numPecas = tabuleiro.getJogadorLocal().informarNumPecas();
+                janela.getPecas().setText("x "+numPecas);  
                 tabuleiro.receberVez();              
             } else if (isComer) { //comer pedra
                 tabuleiro.removerPedra(tabuleiro.getJogadorLocal(), linha, coluna);
                 tabuleiro.getJogadorLocal().decrementaNumPecas();
                 janela.atualizarTabuleiro(tabuleiro);
+                int numPecas = tabuleiro.getJogadorLocal().informarNumPecas();
+                janela.getPecas().setText("x "+numPecas);
                 tabuleiro.passarVez();
                 tabuleiro.verificaGanhador();
             }         

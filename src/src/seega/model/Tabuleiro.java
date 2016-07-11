@@ -80,6 +80,8 @@ public class Tabuleiro {
                                     removerPedra(jogadorRemoto, posicao.getLinha(), posicao.getColuna());
                                     jogo.enviarLance(posicao.getLinha(), posicao.getColuna(), false, false, false, true);
                                     jogadorRemoto.decrementaNumPecas();
+                                      int numPecasComidas = 12-jogadorRemoto.informarNumPecas();
+                                      jogo.informarJanela().getComidas().setText("x "+numPecasComidas);
                                     jogadorLocal.defineComeuVerdadeiro();
                                     comeuPedra=true;
                                 }
