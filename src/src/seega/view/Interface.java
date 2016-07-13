@@ -3,6 +3,7 @@ package src.seega.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -19,6 +20,7 @@ public class Interface extends javax.swing.JFrame {
     
     public Interface() {
         initComponents();
+        
         botaoDesconectar.setEnabled(false);
         this.setTitle("Seega");
         
@@ -557,14 +559,27 @@ public void conectar() {
         if (resultado==3)  {
             botaoConectar.setEnabled(true);
             botaoDesconectar.setEnabled(false);
+            this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+
         }
         this.notificarResultado(resultado);
     }
 
     public void iniciarPartida() {
-        int resultado = jogo.iniciarPartida();
+        final int resultado = jogo.iniciarPartida();
+        if (resultado==6) {
+             this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+             addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+		public void windowClosing(WindowEvent e) {
+                    if (e.getID() == WindowEvent.WINDOW_CLOSING && botaoDesconectar.isEnabled()) {
+                        JOptionPane.showMessageDialog(null, "Você deve desconectar para sair!");
+                    }			
+		} 
+             });	
+    
         this.notificarResultado(resultado);
-        
+        }
     }
 
     public String obterIdJogador() {
