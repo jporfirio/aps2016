@@ -1,56 +1,55 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package src.seega.model;
+
 import br.ufsc.inf.leobr.cliente.Jogada;
 
-/**
- *
- * @author Felipe & Jeann
- */
-
 public class Lance implements Jogada {
-    protected int linha;
-    protected int coluna;
-    protected boolean isRetirada;
-    protected boolean isPrimeiraColocacao;
-    protected boolean isMover;
-    protected boolean isComer;
 
-    public Lance(int linha, int coluna, boolean retirada, boolean primeiraColocacao, boolean isMover, boolean isComer) {
-        this.linha = linha;
-        this.coluna = coluna;
-        this.isRetirada = retirada;
-        this.isPrimeiraColocacao = primeiraColocacao; 
-        this.isMover = isMover;
-        this.isComer = isComer;
-    }
-    
-    public int informarLinha() {
-        return this.linha;
+    protected int primeiraPedraX;
+    protected int primeiraPedraY;
+    protected int segundaPedraX;
+    protected int segundaPedraY;
+    protected int tipoJogada; // 1 colocar, 2 mover, 3 remover, 4 passar vez
+
+    public int getPrimeiraPedraX() {
+        return primeiraPedraX;
     }
 
-    public int informarColuna() {
-        return this.coluna;
-    }
-    
-    public boolean isRetirada() {
-        return this.isRetirada;
-    }
-    
-    public boolean isPrimeiraColocacao() {
-        return this.isPrimeiraColocacao;
+    public void setPrimeiraPedraX(int primeiraPedraX) {
+        this.primeiraPedraX = primeiraPedraX;
     }
 
-    public boolean isMover() {
-        return this.isMover;
+    public int getPrimeiraPedraY() {
+        return primeiraPedraY;
     }
-    
-    public boolean isComer() {
-        return this.isComer;
+
+    public void setPrimeiraPedraY(int primeiraPedraY) {
+        this.primeiraPedraY = primeiraPedraY;
     }
+
+    public int getSegundaPedraX() {
+        return segundaPedraX;
+    }
+
+    public void setSegundaPedraX(int segundaPedraX) {
+        this.segundaPedraX = segundaPedraX;
+    }
+
+    public int getSegundaPedraY() {
+        return segundaPedraY;
+    }
+
+    public void setSegundaPedraY(int segundaPedraY) {
+        this.segundaPedraY = segundaPedraY;
+    }
+
+    public int getTipoJogada() {
+        return tipoJogada;
+    }
+
+    public void setTipoJogada(int tipoJogada) {
+        this.tipoJogada = tipoJogada;
+    }
+
     
     
 }

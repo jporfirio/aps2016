@@ -8,109 +8,153 @@ import br.ufsc.inf.leobr.cliente.exception.JahConectadoException;
 import br.ufsc.inf.leobr.cliente.exception.NaoConectadoException;
 import br.ufsc.inf.leobr.cliente.exception.NaoJogandoException;
 import br.ufsc.inf.leobr.cliente.exception.NaoPossivelConectarException;
-import javax.swing.JOptionPane;
 import src.seega.model.Lance;
+import src.seega.model.Tabuleiro;
 import src.seega.view.AtorJogador;
 
 public class AtorNetGames implements OuvidorProxy {
 
-    protected AtorJogador atorJogador;
-	protected Proxy proxy;
-	
-	public AtorNetGames (AtorJogador interfaceGraf){
-		super();
-		this.atorJogador = interfaceGraf;
-		this.proxy = Proxy.getInstance();
-		proxy.addOuvinte(this);	
-	}
+    protected String servidor;
+    protected AtorJogador jogador;
+    protected Proxy proxy;
+    protected Tabuleiro tabuleiro;
+    
+    public AtorNetGames(AtorJogador jogador){
+        super();
+        this.jogador = jogador;
+        this.proxy = Proxy.getInstance();
+        proxy.addOuvinte(this);
+    }
 
-	public boolean conectar(String servidor, String nome) {
-		try {
-			proxy.conectar(servidor, nome);
-			return true;
-		} catch (JahConectadoException e) {            
-                        JOptionPane.showMessageDialog(atorJogador.informarJanela(), e.getMessage());
-			e.printStackTrace();
-			return false;
-		} catch (NaoPossivelConectarException e) {                        
-                        JOptionPane.showMessageDialog(atorJogador.informarJanela(), e.getMessage());
-			e.printStackTrace();
-			return false;
-		} catch (ArquivoMultiplayerException e) {
-                        JOptionPane.showMessageDialog(atorJogador.informarJanela(), e.getMessage());
-			e.printStackTrace();
-			return false;
-		}
-	}
+    public void enviarPedra(int x, int y) {
+        Lance lance = new Lance();
+        lance.setPrimeiraPedraX(x);
+        lance.setPrimeiraPedraY(y);
+        lance.setTipoJogada(1);
+        enviarJogada(lance);
+    }
+    
+    private void enviarJogada(Lance lance){
+        try{
+            proxy.enviaJogada(lance);
+        } catch (NaoJogandoException e){
+            
+        }
+    }
 
-	public boolean desconectar() {
-		try {
-			proxy.desconectar();
-			return true;
-		} catch (NaoConectadoException e) {
-                        JOptionPane.showMessageDialog(atorJogador.informarJanela(), e.getMessage());
-			e.printStackTrace();
-			return false;
-		}
-	}
+    public int conectar(String servidor) {
+        try {
+            proxy.conectar(servidor, "jogador");
+            return 1;
+        } catch (JahConectadoException | NaoPossivelConectarException | ArquivoMultiplayerException e){
+            
+        }
+        return 2;
+    }
 
-	public void iniciarPartida() {
-		try {
-			proxy.iniciarPartida(new Integer(2));
-		} catch (NaoConectadoException e) {
-                        JOptionPane.showMessageDialog(atorJogador.informarJanela(), e.getMessage());
-			e.printStackTrace();
-		}
-	}
+    public void desconectar() {
+        try {
+            proxy.desconectar();
+        } catch (NaoConectadoException e) {
+            
+        }
+    }
 
-	public void enviarJogada(Lance lance) {
-		try {
-			proxy.enviaJogada(lance);
-		} catch (NaoJogandoException e) {
-                        JOptionPane.showMessageDialog(atorJogador.informarJanela(), e.getMessage());
-			e.printStackTrace();
-		}
-	}
+    public void iniciarPartida() {
+        try {
+            proxy.iniciarPartida(2);
+        } catch (NaoConectadoException e) {
+            
+        }
+    }
 
-	public String informarNomeAdversario(String idUsuario) {
-		String aux1 = proxy.obterNomeAdversario(new Integer(1));
-		String aux2 = proxy.obterNomeAdversario(new Integer(2));;
-		if (aux1.equals(idUsuario)){
-			return aux2;
-		} else {
-			return aux1;
-		}		
-}
+    public void enviarMovimento(int origemX, int origemY, int destinoX, int destinoY) {
+        Lance lance = new Lance();
+        lance.setPrimeiraPedraX(origemX);
+        lance.setPrimeiraPedraY(origemY);
+        lance.setSegundaPedraX(destinoX);
+        lance.setSegundaPedraY(destinoY);
+        lance.setTipoJogada(2);
+        enviarJogada(lance);
+    }
 
-	public void receberJogada(Jogada jogada) {
-		Lance estado = (Lance) jogada;
-		atorJogador.receberJogada(estado);
-	}
+    public void passarVez() {
+        Lance lance = new Lance();
+        lance.setTipoJogada(4);
+        enviarJogada(lance);
+    }
 
-	public void finalizarPartidaComErro(String message) {
-		// TODO Auto-generated method stub
-		
-	}
+    public void receberPedra(int x, int y) {
+        tabuleiro.receberPedra(x, y);
+    }
 
-	public void receberMensagem(String msg) {
-		// TODO Auto-generated method stub
-		
-	}
+    public void receberMovimento(int origemX, int origemY, int destinoX, int destinoY) {
+        tabuleiro.receberMovimento(origemX, origemY, destinoX, destinoY);
+    }
 
-	public void tratarConexaoPerdida() {
-		// TODO Auto-generated method stub
-		
-	}
+    public void receberRemocao(int x, int y) {
+        tabuleiro.receberRemocao(x, y);
+    }
 
-	public void tratarPartidaNaoIniciada(String message) {
-		// TODO Auto-generated method stub
-		
-	}
+    public void receberSolicitacaoInicio() {
+        jogador.receberSolicitacaoInicio();
+    }
 
-	public void iniciarNovaPartida(Integer posicao) {
-		atorJogador.tratarIniciarPartida(posicao);
-	}
-	
+    public void receberVez() {
+        tabuleiro.receberVez();
+    }
 
+    public void removerPedra(int x, int y) {
+        Lance lance = new Lance();
+        lance.setPrimeiraPedraX(x);
+        lance.setPrimeiraPedraY(y);
+        lance.setTipoJogada(3);
+        enviarJogada(lance);
+    }
+
+    @Override
+    public void receberJogada(Jogada jogada) {
+        Lance lance = (Lance) jogada;
+        switch(lance.getTipoJogada()){
+            case 1: // colocar pedra
+                receberPedra(lance.getPrimeiraPedraX(), lance.getPrimeiraPedraY());
+                break;
+            case 2: // mover pedra
+                receberMovimento(lance.getPrimeiraPedraX(), lance.getPrimeiraPedraY(),
+                        lance.getSegundaPedraX(), lance.getSegundaPedraY());
+                break;
+            case 3: // remover pedra
+                receberRemocao(lance.getPrimeiraPedraX(), lance.getPrimeiraPedraY());
+                break;
+            case 4: // passar vez
+                receberVez();
+                break;
+        }
+    }
+    
+    @Override
+    public void iniciarNovaPartida(Integer posicao) {
+        receberSolicitacaoInicio();
+    }
+
+    @Override
+    public void finalizarPartidaComErro(String message) {
+
+    }
+
+    @Override
+    public void receberMensagem(String msg) {
+
+    }
+
+    @Override
+    public void tratarConexaoPerdida() {
+
+    }
+
+    @Override
+    public void tratarPartidaNaoIniciada(String message) {
+        
+    }
 
 }

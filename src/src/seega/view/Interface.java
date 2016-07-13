@@ -1,203 +1,197 @@
-
 package src.seega.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import src.seega.model.JogadorLocal;
-import src.seega.model.Posicao;
-import src.seega.model.Tabuleiro;
 
-
-public class Interface extends javax.swing.JFrame {
+public class Interface extends javax.swing.JFrame implements IInterface {
 
     protected AtorJogador jogo;
     protected JLabel[][] mapaVPosicao = new JLabel[5][5];
-    
+
     public Interface() {
         initComponents();
-        
+
         botaoDesconectar.setEnabled(false);
+        botaoIniciar.setEnabled(false);
         this.setTitle("Seega");
-        
+
         jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(0, 0);
-                }
-         });
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                click(0, 0);
+            }
+        });
         jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(0, 1);
-                }
-         });
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                click(0, 1);
+            }
+        });
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(0, 2);
-                }
-         });
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                click(0, 2);
+            }
+        });
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(0, 3);
-                }
-         });
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                click(0, 3);
+            }
+        });
         jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(0, 4);
-                }
-         });
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                click(0, 4);
+            }
+        });
         jLabel21.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(1, 0);
-                }
-         });
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                click(1, 0);
+            }
+        });
         jLabel22.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(1, 1);
-                }
-         });
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                click(1, 1);
+            }
+        });
         jLabel23.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(1, 2);
-                }
-         });
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                click(1, 2);
+            }
+        });
         jLabel24.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(1, 3);
-                }
-         });
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                click(1, 3);
+            }
+        });
         jLabel25.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(1, 4);
-                }
-         });
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                click(1, 4);
+            }
+        });
         jLabel31.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(2, 0);
-                }
-         });
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                click(2, 0);
+            }
+        });
         jLabel32.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(2, 1);
-                }
-         });
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                click(2, 1);
+            }
+        });
         jLabel33.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(2, 2);
-                }
-         });
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                click(2, 2);
+            }
+        });
         jLabel34.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(2, 3);
-                }
-         });
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                click(2, 3);
+            }
+        });
         jLabel35.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(2, 4);
-                }
-         });
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                click(2, 4);
+            }
+        });
         jLabel41.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(3, 0);
-                }
-         });
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                click(3, 0);
+            }
+        });
         jLabel42.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(3, 1);
-                }
-         });
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                click(3, 1);
+            }
+        });
         jLabel43.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(3, 2);
-                }
-         });
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                click(3, 2);
+            }
+        });
         jLabel44.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(3, 3);
-                }
-         });
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                click(3, 3);
+            }
+        });
         jLabel45.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(3, 4);
-                }
-         });
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                click(3, 4);
+            }
+        });
         jLabel51.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(4, 0);
-                }
-         });
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                click(4, 0);
+            }
+        });
         jLabel52.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(4, 1);
-                }
-         });
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                click(4, 1);
+            }
+        });
         jLabel53.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(4, 2);
-                }
-         });
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                click(4, 2);
+            }
+        });
         jLabel54.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(4, 3);
-                }
-         });
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                click(4, 3);
+            }
+        });
         jLabel55.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent e) {
-                    click(4, 4);
-                }
-         });
-       
-        
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                click(4, 4);
+            }
+        });
+
         botaoConectar.addActionListener(new ActionListener() {
-               @Override
-               public void actionPerformed(ActionEvent e) {
-                   conectar();
-               }
-           });
-        
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                conectar();
+            }
+        });
+
         botaoDesconectar.addActionListener(new ActionListener() {
-             @Override
-             public void actionPerformed(ActionEvent e) {
-                 desconectar();
-                 
-             }
-         });
-        
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                desconectar();
+
+            }
+        });
+
         botaoIniciar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-             iniciarPartida();
+                iniciarPartida();
             }
         });
-        
+
         mapaVPosicao[0][0] = jLabel11;
         mapaVPosicao[0][1] = jLabel12;
         mapaVPosicao[0][2] = jLabel13;
@@ -227,14 +221,149 @@ public class Interface extends javax.swing.JFrame {
         mapaVPosicao[4][2] = jLabel53;
         mapaVPosicao[4][3] = jLabel54;
         mapaVPosicao[4][4] = jLabel55;
-        
+
         jogo = new AtorJogador(this);
-        
+
         pecas.setText("x 12");
         comidas.setText("x 0");
-        
     }
 
+    public void conectar() {
+        int resultado = jogo.conectar(solicitaServidor());
+        if(resultado == 1){
+            botaoConectar.setEnabled(false);
+            botaoDesconectar.setEnabled(true);
+            botaoIniciar.setEnabled(true);
+            notificaConectado();
+        } else {
+            notificaFalhaConexao();
+        }
+    }
+
+    public String solicitaServidor() {
+        String servidor = "localhost";
+        servidor = JOptionPane.showInputDialog(this, ("Insira o endereço do servidor: "), servidor);
+        return servidor;
+    }
+
+    public void notificaConectado() {
+        JOptionPane.showMessageDialog(null, "Conexão estabelecida com êxito!");
+    }
+
+    public void notificaFalhaConexao() {
+        JOptionPane.showMessageDialog(null, "Falha na conexão, verifique o endereço e tente novamente.");
+    }
+
+    public void desconectar() {
+        jogo.desconectar();
+        botaoConectar.setEnabled(true);
+        botaoDesconectar.setEnabled(false);
+        botaoIniciar.setEnabled(false);
+        atualizarTabuleiro();
+    }
+
+    public void iniciarPartida() {
+        jogo.iniciarPartida();
+    }
+
+    public void click(int x, int y) {
+        int codigoNotificacao = jogo.click(x, y);
+        notificarUsuario(codigoNotificacao);
+        atualizarTabuleiro();
+    }
+
+    public void notificarUsuario(int codigoNotificacao) {
+        String notificacao;
+        switch(codigoNotificacao){
+            case 11:
+                notificacao = "Coloque sua segunda pedra";
+                break;
+            case 12:
+                notificacao = "Pedra selecionada não pode estar ocupada ou ser a pedra central";
+                break;
+            case 13:
+                notificacao = "Sucesso ao colocar pedras, vez do adversário.";
+                break;
+            case 14:
+                notificacao = "Etapa 1 concluída.";
+                break;
+            case 21:
+                notificacao = "Selecione o destino.";
+                break;
+            case 22:
+                notificacao = "Selecione uma pedra sua para move-la.";
+                break;
+            case 23:
+                notificacao = "Selecione uma pedra que pode mover.";
+                break;
+            case 24:
+                notificacao = "Movimento efetuado com sucesso.";
+                break;
+            case 25:
+                notificacao = "Selecione um destino válido (desocupado e adjacente)";
+                break;
+            case 31:
+                notificacao = "Pedra removida com sucesso.";
+                break;
+            case 32:
+                notificacao = "Selecione uma pedra do seu adversário que o liberte.";
+                break;
+            case 33:
+                notificacao = "Selecione uma pedra do adversário para remoção.";
+                break;
+            default:
+                notificacao = "Código de erro desconhecido. :(";
+        }
+        JOptionPane.showMessageDialog(null, notificacao);
+    }
+    
+    @Override
+    public void atualizarTabuleiro(){
+        Icon central = new ImageIcon(getClass().getResource("/resources/images/central.png"));
+        Icon local = new ImageIcon(getClass().getResource("/resources/images/pedraLocal.png"));
+        Icon remoto = new ImageIcon(getClass().getResource("/resources/images/pedraRemoto.png"));
+        Icon nulo = new ImageIcon(getClass().getResource("/resources/images/semPedra.png"));
+        // 0 vazia, 11 local livre, 12 local bloqueada, 2 remoto, 3 central
+        int[][] posicoes = jogo.informarEstadoPosicao();
+        int estado = jogo.informarEstadoJogo();
+        for(int i = 0; i < 5; i++){
+            for(int j = 0; j < 5; j++){
+                if(posicoes[i][j] == 0) mapaVPosicao[i][j].setIcon(nulo);
+                else if(posicoes[i][j] == 11 || posicoes[i][j] == 12) mapaVPosicao[i][j].setIcon(local);
+                else if(posicoes[i][j] == 2) mapaVPosicao[i][j].setIcon(remoto);
+                else if(posicoes[i][j] == 3) mapaVPosicao[i][j].setIcon(central);
+                // habilita dependendo do estado do jogo e da posicao
+                switch(estado){
+                    case 0: // sem jogo em andamento
+                    case 12:// fase inicial, vez do jogador remoto
+                    case 22:// fase final, vez do jogador remoto
+                        mapaVPosicao[i][j].setEnabled(false);
+                        break;
+                    case 11://fase inicial, vez do jogador local
+                        if(posicoes[i][j] == 0) mapaVPosicao[i][j].setEnabled(true);
+                        else mapaVPosicao[i][j].setEnabled(false);
+                        break;
+                    case 21://fase final, vez do jogador local, desbloqueado
+                        if(posicoes[i][j] == 2 || posicoes[i][j] == 12) mapaVPosicao[i][j].setEnabled(false);
+                        else mapaVPosicao[i][j].setEnabled(true);
+                        break;
+                    case 23://fase final, vez do jogador local, bloqueado
+                        if(posicoes[i][j] == 2) mapaVPosicao[i][j].setEnabled(true);
+                        else mapaVPosicao[i][j].setEnabled(false);
+                        break;
+                }
+            }
+        }
+    }
+    
+    @Override
+    public void notificarFimJogo(boolean vitoriaLocal){
+        if(vitoriaLocal){
+            JOptionPane.showMessageDialog(this, "Parabéns, você venceu!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Você perdeu, mais sorte na próxima...");
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -506,7 +635,7 @@ public class Interface extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConectarActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_botaoConectarActionPerformed
 
 
@@ -543,178 +672,5 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel pecas;
     // End of variables declaration//GEN-END:variables
-
-
-public void conectar() {
-        int resultado = jogo.conectar();
-        if (resultado==0)  {
-            botaoConectar.setEnabled(false);
-            botaoDesconectar.setEnabled(true);
-        }
-        this.notificarResultado(resultado);
-    }
-
-    public void desconectar() {
-        int resultado = jogo.desconectar();
-        if (resultado==3)  {
-            botaoConectar.setEnabled(true);
-            botaoDesconectar.setEnabled(false);
-            this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-        }
-        this.notificarResultado(resultado);
-    }
-
-    public void iniciarPartida() {
-        final int resultado = jogo.iniciarPartida();
-        if (resultado==6) {
-             this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-             addWindowListener(new java.awt.event.WindowAdapter() {
-                @Override
-		public void windowClosing(WindowEvent e) {
-                    if (e.getID() == WindowEvent.WINDOW_CLOSING && botaoDesconectar.isEnabled()) {
-                        JOptionPane.showMessageDialog(null, "Você deve desconectar para sair!");
-                    }			
-		} 
-             });	
-    
-        this.notificarResultado(resultado);
-        }
-    }
-
-    public String obterIdJogador() {
-        String idJogador = ("jogador");
-        idJogador = JOptionPane.showInputDialog(this, ("Insira o nome do jogador"));
-        return idJogador;
-    }
-
-    public String obterIdServidor() {
-        String idServidor = ("localhost"); //venus.inf.ufsc.br
-        idServidor = JOptionPane.showInputDialog(this, ("Insira o endereço do servidor"), idServidor);
-        return idServidor;
-    }
-
-    public void click(int linha, int coluna) {
-        int resultado = 0;
-        resultado = jogo.click(linha, coluna);
-        switch (resultado) {
-            case 1:
-                JOptionPane.showMessageDialog(null, "Pedra colocada com sucesso!");
-                break;
-            case 2:
-                JOptionPane.showMessageDialog(null, "Posição já ocupada!");
-                break;
-            case 3:
-                JOptionPane.showMessageDialog(null, "Posição central não pode ser ocupada nesta etapa!");
-                break;    
-            case 4:
-                JOptionPane.showMessageDialog(null, "Pedra selecionada. Selecione a posição desejada para movê-la!");
-                break;
-            case 5:
-                JOptionPane.showMessageDialog(null, "Selecione uma pedra sua!");
-                break;
-            case 6:
-                JOptionPane.showMessageDialog(null, "Pedra movida com sucesso");
-                break;                       
-            case 7:
-                JOptionPane.showMessageDialog(null, "Jogo não está em andamento");
-                break;
-            case 8:
-                JOptionPane.showMessageDialog(null, "Jogo acabou!");
-                break;
-            case 9:
-                JOptionPane.showMessageDialog(null, "Não é a sua vez!");
-                break;
-            case 10:
-                JOptionPane.showMessageDialog(null, "Você está bloqueado. Clique na peça do rival que você deseja remover!");
-                break;   
-            case 11:
-                JOptionPane.showMessageDialog(null, "Primeira fase encerrada.");
-                break;
-            case 12:
-                JOptionPane.showMessageDialog(null, "Remova uma pedra do adversário.");
-                break;  
-            case 13:
-                JOptionPane.showMessageDialog(null, "Primeira fase encerrada e você está bloqueado. Clique na peça do rival que você deseja remover para iniciar a segunda fase!.");
-                break;    
-        }
-    }
-    
-    public void atualizarTabuleiro(Tabuleiro tabuleiro) {
-       Icon pedraCentral = new ImageIcon(getClass().getResource("/resources/images/central.png"));
-       Icon pedraLocal = new ImageIcon(getClass().getResource("/resources/images/pedraLocal.png"));
-       Icon pedraRemoto = new ImageIcon(getClass().getResource("/resources/images/pedraRemoto.png"));
-       Icon semPedra = new ImageIcon(getClass().getResource("/resources/images/semPedra.png"));
-       for (int linha = 0; linha < 5; linha++) {
-            for (int coluna = 0; coluna < 5; coluna++) {
-                Posicao posicao = tabuleiro.informarPosicao(linha, coluna);     
-                    if (posicao.informarJogadorOcupante() == null) { 
-                        mapaVPosicao[(linha)][(coluna)].setIcon(semPedra);
-                    } else if (posicao.informarJogadorOcupante() instanceof JogadorLocal) {
-                        mapaVPosicao[(linha)][(coluna)].setIcon(pedraLocal);
-                    } else {
-                        mapaVPosicao[(linha)][(coluna)].setIcon(pedraRemoto);               
-                    }           
-            };
-        };
-        
-        if (tabuleiro.informarFaseInicial()) {
-            mapaVPosicao[2][2].setIcon(pedraCentral);   
-        }
-    }
-    
-    public void notificarResultado(int codigo) {
-        switch (codigo) {
-            case 0:
-                JOptionPane.showMessageDialog(this, "Conexão efetuada com exito");
-                break;
-            case 1:
-                JOptionPane.showMessageDialog(this, "Tentativa de conexão com conexão previamente estabelecida", "Erro", JOptionPane.ERROR_MESSAGE);
-                break;
-            case 2:
-                JOptionPane.showMessageDialog(this, "Tentativa de conexao falhou");
-                break;
-            case 3:
-                JOptionPane.showMessageDialog(this, "Desconexão efetuada com exito");
-                break;
-            case 4:
-                JOptionPane.showMessageDialog(this, "Tentativa de desconexao sem conexao previamente estabelecida");
-                break;
-            case 5:
-                JOptionPane.showMessageDialog(this, "Tentativa de desconexao falhou");
-                break;
-            case 6:
-                JOptionPane.showMessageDialog(this, "Solicitação de inicio procedida com êxito");
-                break;
-            case 7:
-                JOptionPane.showMessageDialog(this, "Tentativa de inicio sem conexão previamente estabelecida");
-                break;    
-            case 8:
-                JOptionPane.showMessageDialog(this, "Operação inválida! Não existe uma partida em andamento!");
-                break;
-            case 9:
-                JOptionPane.showMessageDialog(this, "Partida corrente não interrompida");
-                break;
-      
-        };
-    }
-
-    public JLabel getComidas() {
-        return comidas;
-    }
-
-    public void setComidas(JLabel comidas) {
-        this.comidas = comidas;
-    }
-
-    public JLabel getPecas() {
-        return pecas;
-    }
-
-    public void setPecas(JLabel pecas) {
-        this.pecas = pecas;
-    }
-    
-    
 
 }
