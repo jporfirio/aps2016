@@ -90,7 +90,6 @@ public class AtorJogador {
         int resultado = 0;
         boolean emAndamento = tabuleiro.informarEmAndamento();
         boolean faseInicial = tabuleiro.informarFaseInicial();
-        boolean haGanhador = tabuleiro.isHaGanhador();
         Posicao posicao = tabuleiro.informarPosicao(linha, coluna);
         boolean ocupada = tabuleiro.informarPosicao(linha, coluna).informaOcupada();
         boolean central = tabuleiro.informarPosicao(linha, coluna).informaCentral();
@@ -146,7 +145,8 @@ public class AtorJogador {
                             janela.atualizarTabuleiro(tabuleiro);
                             jogadorRemoto.decrementaNumPecas();
                             int numPecasComidas = 12-jogadorRemoto.informarNumPecas();
-                            janela.getComidas().setText("x "+numPecasComidas);                            jogadorLocal.defineDesbloqueado();
+                            janela.getComidas().setText("x "+numPecasComidas);                            
+                            jogadorLocal.defineDesbloqueado();
                             tabuleiro.passarVez();
                             enviarLance(linha, coluna, true, false, false, false);
 
@@ -176,21 +176,19 @@ public class AtorJogador {
                              jogadorLocal.definePrimeiraEscolhaVerdadeiro();
                              enviarLance(linha, coluna, false, false, true, false);
                              
-                             if (tabuleiro.verificarComeuPedra(this)) { 
+                             if (tabuleiro.verificarComeuPedra(this)) {
+                                 tabuleiro.verificaGanhador();
                                  janela.atualizarTabuleiro(tabuleiro);
                              } else {
                                  tabuleiro.passarVez();
-                                 tabuleiro.verificaGanhador();
+                                 
                              }
                          } else {
                              resultado=2;
                          }                    
                      }               
                 }               
-                if (jogadorLocal.informarNumPecas() == 0 || jogadorRemoto.informarNumPecas() == 0) {
-                    haGanhador = true;
-                    resultado = 8;
-                } 
+                
             } else {
                 resultado = 7;
             }
