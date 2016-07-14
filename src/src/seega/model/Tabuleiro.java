@@ -16,8 +16,9 @@ public class Tabuleiro {
     protected AtorJogador atorJogador;
     protected AtorNetGames atorNetgames;
     
-    public Tabuleiro(AtorNetGames atorNetGames) {
+    public Tabuleiro(AtorNetGames atorNetGames, AtorJogador atorJogador) {
         this.atorNetgames = atorNetGames;
+        this.atorJogador = atorJogador;
     }
 
     public void verificarJogadorBloqueado() {
@@ -50,6 +51,11 @@ public class Tabuleiro {
         if(posicao.informarJogadorOcupante() == jogadorRemoto){
             boolean removeu = posicao.validarRemover();
             if(removeu){
+                
+                int numPecasComidas = 12-jogadorRemoto.informarNumPecas();
+                atorJogador.atualizaComidas(numPecasComidas);
+                
+                atorNetgames.removerPedra(posicaoX, posicaoY);
                 verificaGanhador();
                 passarVez();
                 return 31; // removida com sucesso
@@ -66,6 +72,7 @@ public class Tabuleiro {
                 if(posicoes[i][j].informarJogadorOcupante() == jogadorRemoto){
                     if(!posicoes[i][j].validarOcupacao()){
                         jogadorLocal.defineComeuVerdadeiro();
+                        atorNetgames.removerPedra(i, j);
                     }
                 }
             }
@@ -105,6 +112,7 @@ public class Tabuleiro {
 
     public void iniciarPartida() {
         vezDoJogadorLocal = true;
+        faseInicial = true;
         jogadorLocal = new JogadorLocal();
     }
 
@@ -113,7 +121,7 @@ public class Tabuleiro {
         boolean primeiraEscolha = jogadorLocal.informaPrimeiraEscolha();
         if(primeiraEscolha){
             if(posicao.informarJogadorOcupante() == jogadorLocal){
-                boolean podeMover = posicao.informarPodeMover();
+                boolean podeMover = posicao.validarLiberdade();
                 if(podeMover){
                     jogadorLocal.pedraEscolhida = posicao;
                     jogadorLocal.definePrimeiraEscolhaFalso();
@@ -139,6 +147,8 @@ public class Tabuleiro {
                 if(!jogadorLocal.comeuPedra){
                     passarVez();
                 } else {
+                    int numPecasComidas = 12-jogadorRemoto.informarNumPecas();
+                    atorJogador.atualizaComidas(numPecasComidas);
                     verificaGanhador();
                 }
                 return 24; // movimento efetuado
@@ -163,6 +173,8 @@ public class Tabuleiro {
         Posicao posicao = posicoes[x][y];
         posicao.removeJogador();
         jogadorLocal.decrementaNumPecas();
+        int numPecas = jogadorLocal.informarNumPecas();
+        atorJogador.atualizaPecas(numPecas);
         verificaGanhador();
     }
 
@@ -186,7 +198,7 @@ public class Tabuleiro {
         inicializaAdjacentes();
         
         partidaEmAndamento = true;
-        
+        faseInicial = true;
         jogadorRemoto = new Jogador();
         if(jogadorLocal == null){
             jogadorLocal = new JogadorLocal();
@@ -232,7 +244,7 @@ public class Tabuleiro {
             for(int j = 0; j < 5; j++){
                 if(posicoes[i][j].informaOcupada()){
                     if(posicoes[i][j].informarJogadorOcupante() == jogadorLocal){
-                        if(posicoes[i][j].informarPodeMover()){
+                        if(posicoes[i][j].validarLiberdade()){
                             estadoPosicoes[i][j] = 11; //pode mover
                         } else {
                             estadoPosicoes[i][j] = 12; //não pode mover

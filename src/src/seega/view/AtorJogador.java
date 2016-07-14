@@ -12,7 +12,7 @@ public class AtorJogador {
     public AtorJogador(IInterface interfaceGrafica){
         this.interfaceGrafica = interfaceGrafica;
         netgames = new AtorNetGames(this);
-        tabuleiro = new Tabuleiro(netgames);
+        tabuleiro = new Tabuleiro(netgames, this);
     }
     
     public int conectar(String servidor) {
@@ -37,6 +37,8 @@ public class AtorJogador {
 
     public void receberPedra(int x, int y) {
         tabuleiro.receberPedra(x, y);
+        interfaceGrafica.atualizaComidas(0);
+        interfaceGrafica.atualizaPecas(12);
         interfaceGrafica.atualizarTabuleiro();
     }
 
@@ -52,6 +54,8 @@ public class AtorJogador {
 
     public void receberSolicitacaoInicio() {
         tabuleiro.receberSolicitacaoInicio();
+        interfaceGrafica.atualizaComidas(0);
+        interfaceGrafica.atualizaPecas(12);
         interfaceGrafica.atualizarTabuleiro();
     }
 
@@ -70,6 +74,14 @@ public class AtorJogador {
 
     public int informarEstadoJogo() {
         return tabuleiro.informarEstadoJogo();
+    }
+    
+    public void atualizaComidas(int comidas) {
+        interfaceGrafica.atualizaComidas(comidas);
+    }
+    
+    public void atualizaPecas(int pecas) {
+        interfaceGrafica.atualizaPecas(pecas);
     }
 
     public int click(int x, int y) {

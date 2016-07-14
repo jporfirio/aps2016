@@ -253,6 +253,18 @@ public class Interface extends javax.swing.JFrame implements IInterface {
     public void notificaFalhaConexao() {
         JOptionPane.showMessageDialog(null, "Falha na conexão, verifique o endereço e tente novamente.");
     }
+    
+    public void notificarPartidaIniciada() {
+        JOptionPane.showMessageDialog(null, "Partida iniciada com sucesso!");
+    }
+    
+    public void atualizaComidas(int pecasComidas) {
+        comidas.setText("x "+pecasComidas);
+    }
+    
+    public void atualizaPecas(int total) {
+        pecas.setText("x "+total);
+    }
 
     public void desconectar() {
         jogo.desconectar();
