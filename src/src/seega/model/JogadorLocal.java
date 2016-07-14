@@ -2,7 +2,7 @@ package src.seega.model;
 
 public class JogadorLocal extends Jogador {
 
-    protected boolean primeiraEscolha;
+    protected boolean primeiraEscolha = true;
     protected Posicao pedraEscolhida;
     protected boolean jogadorBloqueado;
     protected boolean comeuPedra;

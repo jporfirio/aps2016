@@ -12,7 +12,7 @@ public class AtorJogador {
     public AtorJogador(IInterface interfaceGrafica){
         this.interfaceGrafica = interfaceGrafica;
         netgames = new AtorNetGames(this);
-        tabuleiro = new Tabuleiro();
+        tabuleiro = new Tabuleiro(netgames);
     }
     
     public int conectar(String servidor) {
@@ -52,6 +52,7 @@ public class AtorJogador {
 
     public void receberSolicitacaoInicio() {
         tabuleiro.receberSolicitacaoInicio();
+        interfaceGrafica.atualizarTabuleiro();
     }
 
     public void receberVez() {
@@ -76,8 +77,7 @@ public class AtorJogador {
         boolean vezJogadorLocal = tabuleiro.informarVezJogadorLocal();
         if(faseInicial && vezJogadorLocal){
             return tabuleiro.colocarPedra(x, y);
-        }
-        else if(vezJogadorLocal) {
+        } else if(vezJogadorLocal) {
             boolean bloqueado = tabuleiro.informarJogadorBloqueado();
             if(bloqueado) {
                 return tabuleiro.removerPedra(x, y);
@@ -85,6 +85,6 @@ public class AtorJogador {
                 return tabuleiro.escolherPosicao(x, y);
             }
         }
-        return 0;
+        return 1; //não é a vez do jogador local
     }
 }

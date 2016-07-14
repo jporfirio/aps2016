@@ -8,13 +8,17 @@ public class Tabuleiro {
     protected JogadorLocal jogadorLocal;
     protected Jogador jogadorRemoto;
     protected Posicao[][] posicoes;
-    protected boolean faseInicial;
+    protected boolean faseInicial = true;
     protected boolean partidaEmAndamento;
     protected boolean vezDoJogadorLocal;
     protected boolean haGanhador;
     protected boolean conectado;
     protected AtorJogador atorJogador;
     protected AtorNetGames atorNetgames;
+    
+    public Tabuleiro(AtorNetGames atorNetGames) {
+        this.atorNetgames = atorNetGames;
+    }
 
     public void verificarJogadorBloqueado() {
         jogadorLocal.defineBloqueado();
@@ -174,15 +178,47 @@ public class Tabuleiro {
                 posicoes[i][j] = new Posicao();
                 posicoes[i][j].setLinha(i);
                 posicoes[i][j].setColuna(j);
-                if(i == 3 && j == 3){
+                if(i == 2 && j == 2){
                     posicoes[i][j].setCentral();
                 }
             }
         }
+        inicializaAdjacentes();
+        
+        partidaEmAndamento = true;
+        
         jogadorRemoto = new Jogador();
         if(jogadorLocal == null){
             jogadorLocal = new JogadorLocal();
             vezDoJogadorLocal = false;
+        }
+    }
+    
+    public void inicializaAdjacentes() {
+        for (int i=0; i< 5; i++) {
+            for (int j=0; j< 5; j++) {
+                if (i - 1 != -1) {
+                    posicoes[(i)][(j)].setPosicaoAcima(posicoes[(i-1)][(j)]);
+                } else {
+                    posicoes[(i)][(j)].setPosicaoAcima(null);
+                }
+                
+                if (i +1 != 5) {
+                    posicoes[(i)][(j)].setPosicaoAbaixo(posicoes[(i+1)][(j)]);
+                } else {
+                    posicoes[(i)][(j)].setPosicaoAbaixo(null);
+                }
+                if (j - 1 != -1) {
+                    posicoes[(i)][(j)].setPosicaoEsquerda(posicoes[(i)][(j-1)]);
+                } else {
+                    posicoes[(i)][(j)].setPosicaoEsquerda(null);
+                }
+                if (j + 1 != 5) {
+                    posicoes[(i)][(j)].setPosicaoDireita(posicoes[(i)][(j+1)]);
+                } else {
+                    posicoes[(i)][(j)].setPosicaoDireita(null);
+                }
+            }
         }
     }
 
@@ -197,18 +233,18 @@ public class Tabuleiro {
                 if(posicoes[i][j].informaOcupada()){
                     if(posicoes[i][j].informarJogadorOcupante() == jogadorLocal){
                         if(posicoes[i][j].informarPodeMover()){
-                            estadoPosicoes[i][j] = 11;
+                            estadoPosicoes[i][j] = 11; //pode mover
                         } else {
-                            estadoPosicoes[i][j] = 12;
+                            estadoPosicoes[i][j] = 12; //não pode mover
                         }
                     } else {
-                        estadoPosicoes[i][j] = 2;
+                        estadoPosicoes[i][j] = 2; //jogador remoto ocupante
                     }
                 } else {
-                    estadoPosicoes[i][j] = 0;
+                    estadoPosicoes[i][j] = 0; //posição livre
                 }
                 if(faseInicial && posicoes[i][j].informaCentral()){
-                    estadoPosicoes[i][j] = 3;
+                    estadoPosicoes[i][j] = 3; //posição central
                 }
             }
         }        
@@ -218,24 +254,37 @@ public class Tabuleiro {
     public int informarEstadoJogo() {
         if(partidaEmAndamento){
             if(faseInicial){
-                if(vezDoJogadorLocal) return 11;
-                else return 12;
+                if(vezDoJogadorLocal) return 11; //vez do jogador local na primeira fase
+                else return 12; //vez do jogador remoto na primeira fase
             } else {
                 if(vezDoJogadorLocal){
-                    if(jogadorLocal.informaBloqueado()) return 23;
-                    else return 21;
+                    if(jogadorLocal.informaBloqueado()) return 23; //jogador local bloqueado
+                    else return 21; //jogador local livre
                 } else {
-                    return 22;
+                    return 22; //vesz do jogador remoto na segunda fase
                 }
             }
         } else {
-            return 0;
+            return 0; //partida não está em andamento
         }
     }
 
     public boolean informarJogadorBloqueado() {
+        for (Posicao[] posicaoArray : posicoes) {
+                    for (Posicao posicaoTabuleiro : posicaoArray) {
+                        if (posicaoTabuleiro.informarJogadorOcupante() == jogadorLocal &&
+                                posicaoTabuleiro.validarLiberdade()) {
+                            jogadorLocal.defineDesbloqueado();
+                            return false;
+                            
+                        } 
+                    }
+       }
+        jogadorLocal.defineBloqueado();
         return jogadorLocal.informaBloqueado();
     }
+        
+    
 
     public boolean informarFaseInicial() {
         return faseInicial;
@@ -254,6 +303,10 @@ public class Tabuleiro {
         if(numPecasLocal == 12 && numPecasRemoto == 12){
             mudarFase();
         }
+        
+        
     }
+    
+    
 
 }

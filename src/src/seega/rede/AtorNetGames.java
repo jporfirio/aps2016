@@ -30,7 +30,7 @@ public class AtorNetGames implements OuvidorProxy {
         Lance lance = new Lance();
         lance.setPrimeiraPedraX(x);
         lance.setPrimeiraPedraY(y);
-        lance.setTipoJogada(1);
+        lance.setTipoJogada(1); // 1 colocar, 2 mover, 3 remover, 4 passar vez
         enviarJogada(lance);
     }
     
@@ -85,15 +85,15 @@ public class AtorNetGames implements OuvidorProxy {
     }
 
     public void receberPedra(int x, int y) {
-        tabuleiro.receberPedra(x, y);
+        jogador.receberPedra(x, y);
     }
 
     public void receberMovimento(int origemX, int origemY, int destinoX, int destinoY) {
-        tabuleiro.receberMovimento(origemX, origemY, destinoX, destinoY);
+        jogador.receberMovimento(origemX, origemY, destinoX, destinoY);
     }
 
     public void receberRemocao(int x, int y) {
-        tabuleiro.receberRemocao(x, y);
+        jogador.receberRemocao(x, y);
     }
 
     public void receberSolicitacaoInicio() {
@@ -101,7 +101,7 @@ public class AtorNetGames implements OuvidorProxy {
     }
 
     public void receberVez() {
-        tabuleiro.receberVez();
+        jogador.receberVez();
     }
 
     public void removerPedra(int x, int y) {

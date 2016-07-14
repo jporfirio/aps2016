@@ -21,10 +21,10 @@ public class Posicao {
     }
 
     public boolean validarRemover() {
-        if(jogadorOcupante != posicaoAcima.informarJogadorOcupante()
-                || jogadorOcupante != posicaoAbaixo.informarJogadorOcupante()
-                || jogadorOcupante != posicaoEsquerda.informarJogadorOcupante()
-                || jogadorOcupante != posicaoDireita.informarJogadorOcupante()){
+        if( (posicaoAcima != null && jogadorOcupante != posicaoAcima.informarJogadorOcupante())
+                || (posicaoAbaixo != null && jogadorOcupante != posicaoAbaixo.informarJogadorOcupante())
+                || (posicaoEsquerda != null && jogadorOcupante != posicaoEsquerda.informarJogadorOcupante())
+                || (posicaoDireita != null && jogadorOcupante != posicaoDireita.informarJogadorOcupante()) ){
             jogadorOcupante.decrementaNumPecas();
             removeJogador();
             return true;
@@ -38,10 +38,10 @@ public class Posicao {
     }
 
     public boolean validarLiberdade() {
-        if(!posicaoAbaixo.informaOcupada()
-                || !posicaoAcima.informaOcupada()
-                || !posicaoDireita.informaOcupada()
-                || !posicaoEsquerda.informaOcupada()){
+        if((posicaoAbaixo != null && !posicaoAbaixo.informaOcupada())
+                || (posicaoAcima != null && !posicaoAcima.informaOcupada())
+                || (posicaoDireita != null && !posicaoDireita.informaOcupada())
+                || (posicaoEsquerda != null && !posicaoEsquerda.informaOcupada())){
             podeMover = true;
             return true;
         }
@@ -50,10 +50,10 @@ public class Posicao {
     }
 
     public boolean validarOcupacao() {
-        if((jogadorOcupante != posicaoAcima.informarJogadorOcupante()
-                && jogadorOcupante != posicaoAbaixo.informarJogadorOcupante())
-                || (jogadorOcupante != posicaoDireita.informarJogadorOcupante()
-                && jogadorOcupante != posicaoEsquerda.informarJogadorOcupante())){
+        if((posicaoAcima != null && posicaoAcima.informarJogadorOcupante() != null && jogadorOcupante != posicaoAcima.informarJogadorOcupante()
+                && posicaoAbaixo != null && posicaoAbaixo.informarJogadorOcupante() != null && jogadorOcupante != posicaoAbaixo.informarJogadorOcupante())
+                || (posicaoDireita != null && posicaoDireita.informarJogadorOcupante() != null && jogadorOcupante != posicaoDireita.informarJogadorOcupante()
+                && posicaoEsquerda != null && posicaoEsquerda.informarJogadorOcupante() != null && jogadorOcupante != posicaoEsquerda.informarJogadorOcupante())){
             jogadorOcupante.decrementaNumPecas();
             removeJogador();
             return false;
@@ -89,5 +89,23 @@ public class Posicao {
     void setColuna(int coluna) {
         this.coluna = coluna;
     }
+
+    public void setPosicaoAcima(Posicao posicaoAcima) {
+        this.posicaoAcima = posicaoAcima;
+    }
+
+    public void setPosicaoAbaixo(Posicao posicaoAbaixo) {
+        this.posicaoAbaixo = posicaoAbaixo;
+    }
+
+    public void setPosicaoEsquerda(Posicao posicaoEsquerda) {
+        this.posicaoEsquerda = posicaoEsquerda;
+    }
+
+    public void setPosicaoDireita(Posicao posicaoDireita) {
+        this.posicaoDireita = posicaoDireita;
+    }
+    
+    
 
 }

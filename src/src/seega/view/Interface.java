@@ -268,13 +268,19 @@ public class Interface extends javax.swing.JFrame implements IInterface {
 
     public void click(int x, int y) {
         int codigoNotificacao = jogo.click(x, y);
-        notificarUsuario(codigoNotificacao);
         atualizarTabuleiro();
+        notificarUsuario(codigoNotificacao);
     }
 
     public void notificarUsuario(int codigoNotificacao) {
         String notificacao;
         switch(codigoNotificacao){
+            case 0:
+                notificacao = "Partida não está em andamento";
+                break;
+            case 1: 
+                notificacao = "Não é a sua vez!";
+                break;
             case 11:
                 notificacao = "Coloque sua segunda pedra";
                 break;
@@ -323,8 +329,11 @@ public class Interface extends javax.swing.JFrame implements IInterface {
         Icon local = new ImageIcon(getClass().getResource("/resources/images/pedraLocal.png"));
         Icon remoto = new ImageIcon(getClass().getResource("/resources/images/pedraRemoto.png"));
         Icon nulo = new ImageIcon(getClass().getResource("/resources/images/semPedra.png"));
-        // 0 vazia, 11 local livre, 12 local bloqueada, 2 remoto, 3 central
+        
+        // 0 - posição livre, 11 - local pode mover, 12 - local bloqueada, 2 - jogador remoto ocupante, 3 - central
         int[][] posicoes = jogo.informarEstadoPosicao();
+        
+        // 11 - vez do local na primeira fase, 12 - vez do remoto na primeira fase, 21 - local livre, 23 - local bloqueado, 22 - vez do remoto na segunda fase, 0 - jogo não em andamento 
         int estado = jogo.informarEstadoJogo();
         for(int i = 0; i < 5; i++){
             for(int j = 0; j < 5; j++){
@@ -333,28 +342,28 @@ public class Interface extends javax.swing.JFrame implements IInterface {
                 else if(posicoes[i][j] == 2) mapaVPosicao[i][j].setIcon(remoto);
                 else if(posicoes[i][j] == 3) mapaVPosicao[i][j].setIcon(central);
                 // habilita dependendo do estado do jogo e da posicao
-                switch(estado){
-                    case 0: // sem jogo em andamento
-                    case 12:// fase inicial, vez do jogador remoto
-                    case 22:// fase final, vez do jogador remoto
-                        mapaVPosicao[i][j].setEnabled(false);
-                        break;
-                    case 11://fase inicial, vez do jogador local
-                        if(posicoes[i][j] == 0) mapaVPosicao[i][j].setEnabled(true);
-                        else mapaVPosicao[i][j].setEnabled(false);
-                        break;
-                    case 21://fase final, vez do jogador local, desbloqueado
-                        if(posicoes[i][j] == 2 || posicoes[i][j] == 12) mapaVPosicao[i][j].setEnabled(false);
-                        else mapaVPosicao[i][j].setEnabled(true);
-                        break;
-                    case 23://fase final, vez do jogador local, bloqueado
-                        if(posicoes[i][j] == 2) mapaVPosicao[i][j].setEnabled(true);
-                        else mapaVPosicao[i][j].setEnabled(false);
-                        break;
+//                switch(estado){
+//                    case 0: // sem jogo em andamento  
+//                    case 12:// fase inicial, vez do jogador remoto
+//                    case 22:// fase final, vez do jogador remoto
+//                        mapaVPosicao[i][j].setEnabled(false);
+//                        break;
+//                    case 11://fase inicial, vez do jogador local
+//                        if(posicoes[i][j] == 0 || posicoes[i][j] == 3) mapaVPosicao[i][j].setEnabled(true);
+//                        else mapaVPosicao[i][j].setEnabled(false);
+//                        break;
+//                    case 21://fase final, vez do jogador local, desbloqueado
+//                        if(posicoes[i][j] == 2 || posicoes[i][j] == 12) mapaVPosicao[i][j].setEnabled(false);
+//                        else mapaVPosicao[i][j].setEnabled(true);
+//                        break;
+//                    case 23://fase final, vez do jogador local, bloqueado
+//                        if(posicoes[i][j] == 2) mapaVPosicao[i][j].setEnabled(true);
+//                        else mapaVPosicao[i][j].setEnabled(false);
+//                        break;
                 }
             }
         }
-    }
+    
     
     @Override
     public void notificarFimJogo(boolean vitoriaLocal){
