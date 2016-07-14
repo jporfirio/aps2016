@@ -54,6 +54,7 @@ public class AtorJogador {
 
     public void receberSolicitacaoInicio() {
         tabuleiro.receberSolicitacaoInicio();
+        interfaceGrafica.notificarPartidaIniciada();
         interfaceGrafica.atualizaComidas(0);
         interfaceGrafica.atualizaPecas(12);
         interfaceGrafica.atualizarTabuleiro();

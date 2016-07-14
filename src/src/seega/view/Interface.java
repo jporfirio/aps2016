@@ -353,13 +353,13 @@ public class Interface extends javax.swing.JFrame implements IInterface {
                 else if(posicoes[i][j] == 11 || posicoes[i][j] == 12) mapaVPosicao[i][j].setIcon(local);
                 else if(posicoes[i][j] == 2) mapaVPosicao[i][j].setIcon(remoto);
                 else if(posicoes[i][j] == 3) mapaVPosicao[i][j].setIcon(central);
-                // habilita dependendo do estado do jogo e da posicao
+//              //   habilita dependendo do estado do jogo e da posicao
 //                switch(estado){
 //                    case 0: // sem jogo em andamento  
 //                    case 12:// fase inicial, vez do jogador remoto
 //                    case 22:// fase final, vez do jogador remoto
 //                        mapaVPosicao[i][j].setEnabled(false);
-//                        break;
+//                        break;    
 //                    case 11://fase inicial, vez do jogador local
 //                        if(posicoes[i][j] == 0 || posicoes[i][j] == 3) mapaVPosicao[i][j].setEnabled(true);
 //                        else mapaVPosicao[i][j].setEnabled(false);
@@ -372,10 +372,10 @@ public class Interface extends javax.swing.JFrame implements IInterface {
 //                        if(posicoes[i][j] == 2) mapaVPosicao[i][j].setEnabled(true);
 //                        else mapaVPosicao[i][j].setEnabled(false);
 //                        break;
-                }
+//                }
             }
         }
-    
+    }
     
     @Override
     public void notificarFimJogo(boolean vitoriaLocal){

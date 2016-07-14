@@ -273,7 +273,7 @@ public class Tabuleiro {
                     if(jogadorLocal.informaBloqueado()) return 23; //jogador local bloqueado
                     else return 21; //jogador local livre
                 } else {
-                    return 22; //vesz do jogador remoto na segunda fase
+                    return 22; //vez do jogador remoto na segunda fase
                 }
             }
         } else {
